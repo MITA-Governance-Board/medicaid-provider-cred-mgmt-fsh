@@ -10,7 +10,7 @@ Usage: #example
 * extension[medicaidProviderId].valueString = "MD12345"
 * identifier[0].system = "http://hl7.org/fhir/sid/us-npi"
 * identifier[0].value = "1234567890"
-* identifier[1].system = "http://medicaid.state.gov/provider-id"
+* identifier[1].system = "urn:oid:2.16.840.1.113883.4.642.40.42.2"
 * identifier[1].value = "MD12345"
 * active = true
 * name.family = "Smith"
@@ -50,7 +50,7 @@ Usage: #example
 * meta.profile = "http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-practitioner-role"
 * extension[enrollmentStatus].valueCodeableConcept = http://hl7.org/fhir/us/medicaid-provider-credentialing/CodeSystem/medicaid-enrollment-status#enrolled "Enrolled"
 * extension[credentialingStatus].valueCodeableConcept = http://hl7.org/fhir/us/medicaid-provider-credentialing/CodeSystem/medicaid-credentialing-status#credentialed "Credentialed"
-* identifier.system = "http://medicaid.state.gov/practitioner-role-id"
+* identifier.system = "urn:oid:2.16.840.1.113883.4.642.40.42.3"
 * identifier.value = "PR-12345"
 * active = true
 * period.start = "2023-01-01"
@@ -81,9 +81,9 @@ Usage: #example
 * meta.profile = "http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-organization"
 * identifier[npi].system = "http://hl7.org/fhir/sid/us-npi"
 * identifier[npi].value = "1234567891"
-* identifier[medicaidId].system = "http://medicaid.state.gov/organization-id"
+* identifier[medicaidId].system = "urn:oid:2.16.840.1.113883.4.642.40.42.1"
 * identifier[medicaidId].value = "ORG-12345"
-* identifier[tin].system = "http://terminology.hl7.org/NamingSystem/USEIN"
+* identifier[tin].system = "urn:oid:2.16.840.1.113883.4.4"
 * identifier[tin].value = "12-3456789"
 * active = true
 * type = http://terminology.hl7.org/CodeSystem/organization-type#prov "Healthcare Provider"
@@ -114,7 +114,7 @@ Title: "Example Medicaid Location"
 Description: "Example of a location where Medicaid services are provided"
 Usage: #example
 * meta.profile = "http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-location"
-* identifier.system = "http://medicaid.state.gov/location-id"
+* identifier.system = "urn:oid:2.16.840.1.113883.4.642.40.42.4"
 * identifier.value = "LOC-12345"
 * status = #active
 * name = "Springfield Medical Center - Main Campus"
@@ -149,7 +149,7 @@ Title: "Example Medicaid Healthcare Service"
 Description: "Example of a healthcare service covered by Medicaid"
 Usage: #example
 * meta.profile = "http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-healthcare-service"
-* identifier.system = "http://medicaid.state.gov/service-id"
+* identifier.system = "urn:oid:2.16.840.1.113883.4.642.40.42.5"
 * identifier.value = "SVC-12345"
 * active = true
 * providedBy = Reference(MedicaidOrganizationExample)
@@ -186,7 +186,7 @@ Title: "Example Medicaid Endpoint"
 Description: "Example of a technical endpoint for Medicaid data exchange"
 Usage: #example
 * meta.profile = "http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-endpoint"
-* identifier.system = "http://medicaid.state.gov/endpoint-id"
+* identifier.system = "urn:oid:2.16.840.1.113883.4.642.40.42.6"
 * identifier.value = "EP-12345"
 * status = #active
 * connectionType = http://terminology.hl7.org/CodeSystem/endpoint-connection-type#hl7-fhir-rest "HL7 FHIR"
@@ -239,7 +239,7 @@ Usage: #example
 * extension[medicaidProviderId].valueString = "NP67890"
 * identifier[0].system = "http://hl7.org/fhir/sid/us-npi"
 * identifier[0].value = "9876543210"
-* identifier[1].system = "http://medicaid.state.gov/provider-id"
+* identifier[1].system = "urn:oid:2.16.840.1.113883.4.642.40.42.2"
 * identifier[1].value = "NP67890"
 * active = true
 * name.family = "Davis"
@@ -281,9 +281,9 @@ Usage: #example
 * meta.profile = "http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-organization"
 * identifier[npi].system = "http://hl7.org/fhir/sid/us-npi"
 * identifier[npi].value = "1234567892"
-* identifier[medicaidId].system = "http://medicaid.state.gov/organization-id"
+* identifier[medicaidId].system = "urn:oid:2.16.840.1.113883.4.642.40.42.1"
 * identifier[medicaidId].value = "SPEC-54321"
-* identifier[tin].system = "http://terminology.hl7.org/NamingSystem/USEIN"
+* identifier[tin].system = "urn:oid:2.16.840.1.113883.4.4"
 * identifier[tin].value = "98-7654321"
 * active = true
 * type = http://terminology.hl7.org/CodeSystem/organization-type#prov "Healthcare Provider"
@@ -344,9 +344,9 @@ Title: "Example Medicaid Rural Health Clinic"
 Description: "Example of a rural health clinic participating in Medicaid"
 Usage: #example
 * meta.profile = "http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-organization"
-* identifier[medicaidId].system = "http://medicaid.state.gov/organization-id"
+* identifier[medicaidId].system = "urn:oid:2.16.840.1.113883.4.642.40.42.1"
 * identifier[medicaidId].value = "RHC-11111"
-* identifier[tin].system = "http://terminology.hl7.org/NamingSystem/USEIN"
+* identifier[tin].system = "urn:oid:2.16.840.1.113883.4.4"
 * identifier[tin].value = "11-1111111"
 * active = true
 * type = http://terminology.hl7.org/CodeSystem/organization-type#prov "Healthcare Provider"

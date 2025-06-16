@@ -1,49 +1,5 @@
 // Medicaid Provider Credentialing and Enrollment Profiles
 
-// Extensions
-Extension: MedicaidProviderIdExtension
-Id: medicaid-provider-id
-Title: "Medicaid Provider ID"
-Description: "State-specific Medicaid provider identifier"
-* ^context.type = #element
-* ^context.expression = "Practitioner"
-* value[x] only string
-* valueString 1..1
-
-Extension: MedicaidEnrollmentStatusExtension
-Id: medicaid-enrollment-status
-Title: "Medicaid Enrollment Status"
-Description: "Current enrollment status in the Medicaid program"
-* ^context.type = #element
-* ^context.expression = "PractitionerRole"
-* value[x] only CodeableConcept
-* valueCodeableConcept from MedicaidEnrollmentStatuses (required)
-
-Extension: MedicaidCredentialingStatusExtension
-Id: medicaid-credentialing-status
-Title: "Medicaid Credentialing Status"
-Description: "Current credentialing status for Medicaid participation"
-* ^context.type = #element
-* ^context.expression = "PractitionerRole"
-* value[x] only CodeableConcept
-* valueCodeableConcept from MedicaidCredentialingStatuses (required)
-
-Extension: MedicaidSpecialtyBoardCertificationExtension
-Id: medicaid-specialty-board-certification
-Title: "Medicaid Specialty Board Certification"
-Description: "Board certification information for specialty practice"
-* ^context.type = #element
-* ^context.expression = "Practitioner.qualification"
-* extension contains
-    boardName 1..1 and
-    certificationDate 0..1 and
-    expirationDate 0..1 and
-    certificationNumber 0..1
-* extension[boardName].value[x] only string
-* extension[certificationDate].value[x] only date
-* extension[expirationDate].value[x] only date
-* extension[certificationNumber].value[x] only string
-
 // Core Profiles
 Profile: MedicaidPractitioner
 Parent: http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
@@ -52,22 +8,11 @@ Title: "Medicaid Practitioner"
 Description: "A practitioner participating in or applying to participate in the Medicaid program"
 * ^status = #active
 * extension contains MedicaidProviderIdExtension named medicaidProviderId 0..1
-* identifier 1..*
-* name 1..*
-* name.family 1..1
-* name.given 1..*
-* telecom 1..*
-* address 1..*
-* gender 1..1
-* birthDate 1..1
-* qualification 1..*
-* qualification.code from http://terminology.hl7.org/ValueSet/v2-2.7-0360 (extensible)
-* qualification.period 1..1
-* qualification.issuer 1..1
+// Inherit US Core constraints and add Medicaid-specific requirements
 * qualification.extension contains MedicaidSpecialtyBoardCertificationExtension named boardCertification 0..*
 
 Profile: MedicaidPractitionerRole
-Parent: PractitionerRole
+Parent: http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole
 Id: medicaid-practitioner-role
 Title: "Medicaid Practitioner Role"
 Description: "A practitioner's role within the Medicaid program"
@@ -77,21 +22,21 @@ Description: "A practitioner's role within the Medicaid program"
     MedicaidCredentialingStatusExtension named credentialingStatus 1..1
 * identifier 1..*
 * active 1..1
-* period 1..1
-* period.start 1..1
+* period 0..1
+* period.start 0..1
 * practitioner 1..1
 * practitioner only Reference(MedicaidPractitioner)
 * organization 0..1
 * organization only Reference(MedicaidOrganization)
-* code 1..*
+* code 0..*
 * code from MedicaidProviderTypes (extensible)
-* specialty 1..*
+* specialty 0..*
 * specialty from MedicaidSpecialtyCodes (extensible)
 * location 0..*
 * location only Reference(MedicaidLocation)
 * healthcareService 0..*
 * healthcareService only Reference(MedicaidHealthcareService)
-* telecom 1..*
+* telecom 0..*
 * availableTime 0..*
 * notAvailable 0..*
 * availabilityExceptions 0..1
@@ -99,7 +44,7 @@ Description: "A practitioner's role within the Medicaid program"
 * endpoint only Reference(MedicaidEndpoint)
 
 Profile: MedicaidOrganization
-Parent: Organization
+Parent: http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
 Id: medicaid-organization
 Title: "Medicaid Organization"
 Description: "An organization participating in the Medicaid program"
@@ -110,47 +55,32 @@ Description: "An organization participating in the Medicaid program"
 * identifier ^slicing.rules = #open
 * identifier contains
     npi 0..1 and
-    medicaidId 1..1 and
+    medicaidId 0..1 and
     tin 0..1
 * identifier[npi].system = "http://hl7.org/fhir/sid/us-npi" (exactly)
-* identifier[medicaidId].system = "http://medicaid.state.gov/organization-id" (exactly)
-* identifier[tin].system = "http://terminology.hl7.org/NamingSystem/USEIN" (exactly)
+* identifier[medicaidId].system = "urn:oid:2.16.840.1.113883.4.642.40.42.1" (exactly)
+* identifier[medicaidId] ^short = "State Medicaid Organization ID"
+* identifier[tin].system = "urn:oid:2.16.840.1.113883.4.4" (exactly)
 * active 1..1
 * type 1..*
 * name 1..1
-* alias 0..*
 * telecom 1..*
 * address 1..*
 * partOf 0..1
 * partOf only Reference(MedicaidOrganization)
-* contact 0..*
 * endpoint 0..1
 * endpoint only Reference(MedicaidEndpoint)
 
 Profile: MedicaidLocation
-Parent: Location
+Parent: http://hl7.org/fhir/us/core/StructureDefinition/us-core-location
 Id: medicaid-location
 Title: "Medicaid Location"
 Description: "A location where Medicaid services are provided"
 * ^status = #active
-* identifier 1..*
-* status 1..1
-* name 1..1
-* alias 0..*
-* description 0..1
-* mode 0..1
-* type 1..*
-* type from http://terminology.hl7.org/ValueSet/v3-ServiceDeliveryLocationRoleType (extensible)
-* telecom 1..*
-* address 1..1
-* physicalType 0..1
-* position 0..1
-* managingOrganization 1..1
+* managingOrganization 0..1
 * managingOrganization only Reference(MedicaidOrganization)
 * partOf 0..1
 * partOf only Reference(MedicaidLocation)
-* hoursOfOperation 0..*
-* availabilityExceptions 0..1
 * endpoint 0..1
 * endpoint only Reference(MedicaidEndpoint)
 
@@ -160,23 +90,23 @@ Id: medicaid-healthcare-service
 Title: "Medicaid Healthcare Service"
 Description: "A healthcare service covered by Medicaid"
 * ^status = #active
-* identifier 1..*
+* identifier 0..*
 * active 1..1
-* providedBy 1..1
+* providedBy 0..1
 * providedBy only Reference(MedicaidOrganization)
-* category 1..*
+* category 0..*
 * category from http://hl7.org/fhir/ValueSet/service-category (extensible)
-* type 1..*
+* type 0..*
 * type from http://hl7.org/fhir/ValueSet/service-type (extensible)
 * specialty 0..*
 * specialty from MedicaidSpecialtyCodes (extensible)
 * location 0..*
 * location only Reference(MedicaidLocation)
-* name 1..1
+* name 0..1
 * comment 0..1
 * extraDetails 0..1
 * photo 0..1
-* telecom 1..*
+* telecom 0..*
 * coverageArea 0..*
 * serviceProvisionCode 0..*
 * eligibility 0..*
@@ -197,12 +127,12 @@ Id: medicaid-endpoint
 Title: "Medicaid Endpoint"
 Description: "Technical endpoint for Medicaid data exchange"
 * ^status = #active
-* identifier 1..*
+* identifier 0..*
 * status 1..1
 * connectionType 1..1
 * connectionType from http://hl7.org/fhir/ValueSet/endpoint-connection-type (extensible)
-* name 1..1
-* managingOrganization 1..1
+* name 0..1
+* managingOrganization 0..1
 * managingOrganization only Reference(MedicaidOrganization)
 * contact 0..*
 * period 0..1
