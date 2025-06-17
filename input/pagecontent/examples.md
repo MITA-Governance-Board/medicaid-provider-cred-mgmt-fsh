@@ -1,27 +1,23 @@
-# Examples
-
-## Overview
-
 This section provides comprehensive examples demonstrating the use of the Medicaid Provider Credentialing and Enrollment profiles. These examples illustrate real-world scenarios and show how the various profiles work together to support provider credentialing and enrollment workflows.
 
-## Example Scenarios
+### Example Scenarios
 
-### Scenario 1: Primary Care Physician Enrollment
+#### Scenario 1: Primary Care Physician Enrollment
 
 This scenario demonstrates the enrollment of a family medicine physician into a state Medicaid program.
 
-#### Participants:
+##### Participants:
 - **Dr. John Michael Smith**: Family medicine physician seeking Medicaid enrollment
 - **Springfield Medical Center**: Hospital where Dr. Smith practices
 - **Illinois Medicaid Program**: State Medicaid agency
 
-#### Workflow:
+##### Workflow:
 1. Dr. Smith submits an application for Medicaid enrollment
 2. The state verifies his medical license and board certification
 3. Springfield Medical Center provides organizational information
 4. Dr. Smith is approved and enrolled in the Medicaid program
 
-#### FHIR Resources:
+##### FHIR Resources:
 
 **[Medicaid Practitioner Example](Practitioner-MedicaidPractitionerExample.html)**
 - Demonstrates a complete practitioner profile with NPI, Medicaid ID, and board certification
@@ -43,82 +39,82 @@ This scenario demonstrates the enrollment of a family medicine physician into a 
 - Shows address, contact information, and hours of operation
 - Links to the managing organization
 
-### Scenario 2: Nurse Practitioner Credentialing
+#### Scenario 2: Nurse Practitioner Credentialing
 
 This scenario shows the credentialing process for a nurse practitioner.
 
-#### Participants:
+##### Participants:
 - **Sarah Elizabeth Davis, NP**: Nurse practitioner applying for Medicaid participation
 - **Healthcare Plaza Clinic**: Primary care clinic
 
-#### Workflow:
+##### Workflow:
 1. Ms. Davis applies for Medicaid enrollment as a nurse practitioner
 2. Her nursing license and nurse practitioner certification are verified
 3. She is credentialed to provide primary care services
 4. Her enrollment is approved with appropriate scope of practice
 
-#### FHIR Resources:
+##### FHIR Resources:
 
 **[Medicaid Nurse Practitioner Example](Practitioner-MedicaidNursePractitionerExample.html)**
 - Shows a nurse practitioner with both RN license and NP certification
 - Demonstrates multiple qualifications with different issuing organizations
 - Includes appropriate naming conventions for nurse practitioners
 
-### Scenario 3: Specialty Clinic Registration
+#### Scenario 3: Specialty Clinic Registration
 
 This scenario demonstrates the registration of a specialty clinic.
 
-#### Participants:
+##### Participants:
 - **Springfield Cardiology Associates**: Cardiology specialty practice
 - **Multiple cardiologists**: Practitioners affiliated with the clinic
 
-#### Workflow:
+##### Workflow:
 1. The specialty clinic applies for Medicaid participation
 2. Organizational credentials and affiliations are verified
 3. Individual practitioners are credentialed for specialty services
 4. The clinic is approved to provide cardiology services
 
-#### FHIR Resources:
+##### FHIR Resources:
 
 **[Medicaid Specialty Clinic Example](Organization-MedicaidSpecialtyClinicExample.html)**
 - Shows a specialty clinic as a provider group
 - Demonstrates organizational hierarchy with parent organization
 - Includes specialty-specific contact information
 
-### Scenario 4: Rural Health Clinic Enrollment
+#### Scenario 4: Rural Health Clinic Enrollment
 
 This scenario shows the enrollment of a rural health clinic.
 
-#### Participants:
+##### Participants:
 - **Prairie View Rural Health Clinic**: Rural health clinic serving underserved area
 
-#### Workflow:
+##### Workflow:
 1. Rural health clinic applies for Medicaid participation
 2. Special rural health clinic requirements are verified
 3. Clinic is approved with appropriate rural health designations
 
-#### FHIR Resources:
+##### FHIR Resources:
 
 **[Medicaid Rural Health Clinic Example](Organization-MedicaidRuralHealthClinicExample.html)**
 - Shows a rural health clinic without NPI (not required for all RHCs)
 - Demonstrates minimal required identifiers
 - Shows rural location characteristics
 
-### Scenario 5: License Verification Process
+#### Scenario 5: License Verification Process
 
 This scenario demonstrates the verification of provider credentials.
 
-#### Participants:
+##### Participants:
 - **Illinois Department of Financial and Professional Regulation**: State licensing board
 - **Illinois Medicaid Provider Enrollment Unit**: State Medicaid verification unit
 
-#### Workflow:
+##### Workflow:
 1. Provider license verification is initiated
 2. Primary source verification is conducted with state licensing board
 3. Verification results are documented
 4. Ongoing monitoring is scheduled
 
-#### FHIR Resources:
+##### FHIR Resources:
 
 **[Medicaid Verification Result Example](VerificationResult-MedicaidVerificationResultExample.html)**
 - Shows comprehensive verification result with primary source information
@@ -130,25 +126,25 @@ This scenario demonstrates the verification of provider credentials.
 - Demonstrates API-based verification method
 - Includes automatic update capabilities
 
-## Technical Examples
+### Technical Examples
 
-### Healthcare Service Configuration
+#### Healthcare Service Configuration
 
 **[Medicaid Healthcare Service Example](HealthcareService-MedicaidHealthcareServiceExample.html)**
 - Shows primary care services offered at a Medicaid location
 - Demonstrates service categories, types, and eligibility requirements
 - Includes availability and appointment information
 
-### Technical Endpoint Setup
+#### Technical Endpoint Setup
 
 **[Medicaid Endpoint Example](Endpoint-MedicaidEndpointExample.html)**
 - Shows FHIR endpoint configuration for data exchange
 - Demonstrates connection type and payload specifications
 - Includes security and authentication considerations
 
-## Data Element Examples
+### Data Element Examples
 
-### Identifiers
+#### Identifiers
 
 ```json
 {
@@ -165,7 +161,7 @@ This scenario demonstrates the verification of provider credentials.
 }
 ```
 
-### Extensions
+#### Extensions
 
 ```json
 {
@@ -186,7 +182,7 @@ This scenario demonstrates the verification of provider credentials.
 }
 ```
 
-### Board Certification Extension
+#### Board Certification Extension
 
 ```json
 {
@@ -216,9 +212,9 @@ This scenario demonstrates the verification of provider credentials.
 }
 ```
 
-## Common Patterns
+### Common Patterns
 
-### Provider Enrollment Status Tracking
+#### Provider Enrollment Status Tracking
 
 The following pattern shows how to track a provider's enrollment status over time:
 
@@ -228,7 +224,7 @@ The following pattern shows how to track a provider's enrollment status over tim
 4. **Approved**: Status = "enrolled"
 5. **Revalidation Required**: Status = "revalidation-required"
 
-### Credentialing Workflow
+#### Credentialing Workflow
 
 The credentialing status follows this typical progression:
 
@@ -238,7 +234,7 @@ The credentialing status follows this typical progression:
 4. **Periodic Review**: Status = "recredentialing"
 5. **Renewal Complete**: Status = "credentialed"
 
-### Multi-Location Providers
+#### Multi-Location Providers
 
 For providers practicing at multiple locations:
 
@@ -262,7 +258,7 @@ For providers practicing at multiple locations:
 }
 ```
 
-### Group Practice Representation
+#### Group Practice Representation
 
 For group practices with multiple providers:
 
@@ -286,9 +282,9 @@ For group practices with multiple providers:
 }
 ```
 
-## Validation Examples
+### Validation Examples
 
-### Required Field Validation
+#### Required Field Validation
 
 All examples demonstrate compliance with required fields:
 
@@ -296,7 +292,7 @@ All examples demonstrate compliance with required fields:
 - **PractitionerRole**: active, period.start, practitioner, code, specialty, telecom
 - **Organization**: identifier (Medicaid ID), active, type, name, telecom, address
 
-### Terminology Validation
+#### Terminology Validation
 
 Examples use appropriate code systems:
 
@@ -305,7 +301,7 @@ Examples use appropriate code systems:
 - **Enrollment Status**: Medicaid-specific code system
 - **Credentialing Status**: Medicaid-specific code system
 
-### Reference Validation
+#### Reference Validation
 
 All references in the examples point to valid resources:
 
@@ -313,9 +309,9 @@ All references in the examples point to valid resources:
 - Location references valid managing Organization
 - HealthcareService references valid Organization and Location
 
-## Error Handling Examples
+### Error Handling Examples
 
-### Missing Required Fields
+#### Missing Required Fields
 
 ```json
 {
@@ -335,7 +331,7 @@ All references in the examples point to valid resources:
 }
 ```
 
-### Invalid Code System
+#### Invalid Code System
 
 ```json
 {
@@ -355,32 +351,32 @@ All references in the examples point to valid resources:
 }
 ```
 
-## Testing Scenarios
+### Testing Scenarios
 
-### Positive Test Cases
+#### Positive Test Cases
 
 1. **Complete Provider Enrollment**: All required fields present and valid
 2. **Minimal Valid Resource**: Only required fields present
 3. **Maximum Data**: All optional fields populated
 4. **Multiple Qualifications**: Provider with multiple licenses/certifications
 
-### Negative Test Cases
+#### Negative Test Cases
 
 1. **Missing NPI**: Practitioner without required NPI
 2. **Invalid Status Code**: Using non-existent enrollment status
 3. **Broken Reference**: PractitionerRole referencing non-existent Practitioner
 4. **Invalid Date Format**: Using incorrect date format in qualification period
 
-### Edge Cases
+#### Edge Cases
 
 1. **Expired Credentials**: Provider with expired license
 2. **Suspended Enrollment**: Provider with suspended status
 3. **Multiple Organizations**: Provider affiliated with multiple organizations
 4. **Inactive Location**: Services at temporarily inactive location
 
-## Implementation Notes
+### Implementation Notes
 
-### Resource Relationships
+#### Resource Relationships
 
 The examples demonstrate proper resource relationships:
 
@@ -388,7 +384,7 @@ The examples demonstrate proper resource relationships:
 - Organization → Location → HealthcareService
 - Practitioner/Organization ← VerificationResult
 
-### Identifier Management
+#### Identifier Management
 
 Examples show proper use of identifier systems:
 
@@ -396,7 +392,7 @@ Examples show proper use of identifier systems:
 - Medicaid Provider ID: `http://medicaid.state.gov/provider-id`
 - TIN: `http://terminology.hl7.org/NamingSystem/USEIN`
 
-### Extension Usage
+#### Extension Usage
 
 Examples demonstrate proper extension usage:
 
@@ -404,11 +400,10 @@ Examples demonstrate proper extension usage:
 - Required vs. optional extension elements
 - Proper data types for extension values
 
-### Search Parameters
+#### Search Parameters
 
 Common search patterns demonstrated in examples:
 
 - Find practitioners by NPI: `Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|1234567890`
 - Find by enrollment status: `PractitionerRole?enrollment-status=enrolled`
 - Find by specialty: `PractitionerRole?specialty=207Q00000X`
-- Find by organization: `PractitionerRole?organization=Organization/MedicaidOrganizationExample`

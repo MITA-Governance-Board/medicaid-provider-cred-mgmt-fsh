@@ -51,7 +51,7 @@ Description: "An organization participating in the Medicaid program"
 * ^status = #active
 * identifier 1..*
 * identifier ^slicing.discriminator.type = #pattern
-* identifier ^slicing.discriminator.path = "system"
+* identifier ^slicing.discriminator.path = "$this"
 * identifier ^slicing.rules = #open
 * identifier contains
     npi 0..1 and

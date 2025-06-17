@@ -1,5 +1,3 @@
-# Medicaid Provider Credentialing and Enrollment Implementation Guide
-
 ## Introduction
 
 The Medicaid Provider Credentialing and Enrollment Implementation Guide (IG) provides a standardized approach for managing provider credentialing and enrollment processes within Medicaid programs. This IG is designed to align with the Medicaid Information Technology Architecture (MITA) 3.0 framework and leverages FHIR US Core 6.1.0, Da Vinci PDex Plan-Net, and FAST National Directory specifications.
@@ -49,21 +47,3 @@ The IG provides:
 1. **Profiles and Extensions**: FHIR profiles tailored for Medicaid provider credentialing
 2. **Value Sets**: Standardized code systems for consistent data representation
 3. **Implementation Guidance**: Detailed guidance for system implementation
-4. **Examples**: Real-world examples demonstrating proper usage
-5. **Testing Framework**: Validation and testing approaches
-
-## Getting Started
-
-To begin implementation:
-1. Review the [Background](background.html) section for foundational concepts
-2. Examine the [Profiles](profiles.html) for technical specifications
-3. Study the [Examples](examples.html) for practical implementation patterns
-4. Consult the [Implementation Guidance](implementation-guidance.html) for detailed implementation support
-
-## Feedback and Support
-
-This IG is a living document that will evolve based on implementer feedback and changing requirements. For questions, suggestions, or issues, please contact the HL7 Financial Management Work Group.
-
----
-
-*This Implementation Guide is published under the Creative Commons "No Rights Reserved" (CC0) license.*

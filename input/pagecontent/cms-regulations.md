@@ -1,14 +1,10 @@
-# CMS Regulations
-
-## Overview
-
 This implementation guide supports compliance with federal regulations governing Medicaid provider enrollment and credentialing. The primary regulatory framework is established in Title 42 of the Code of Federal Regulations (CFR), specifically Part 455 - Program Integrity: Medicaid.
 
-## Key Regulatory Requirements
+### Key Regulatory Requirements
 
-### 42 CFR 455.410 - Enrollment and Screening of Providers
+#### 42 CFR 455.410 - Enrollment and Screening of Providers
 
-#### Provider Enrollment Requirements
+##### Provider Enrollment Requirements
 All providers must enroll in Medicaid before submitting claims for reimbursement. The enrollment process includes:
 
 - **Application Submission**: Providers must submit complete enrollment applications
@@ -21,29 +17,29 @@ All providers must enroll in Medicaid before submitting claims for reimbursement
 - `MedicaidEnrollmentStatusExtension` tracks enrollment status
 - `MedicaidVerificationResult` documents screening results
 
-### 42 CFR 455.450 - Screening Requirements
+#### 42 CFR 455.450 - Screening Requirements
 
-#### Risk-Based Provider Categorization
+##### Risk-Based Provider Categorization
 Providers are categorized into three risk levels with corresponding screening requirements:
 
-##### Limited Risk Category
+###### Limited Risk Category
 - **Criteria**: Physicians, non-physician practitioners with low risk of fraud
 - **Screening**: License verification, database checks
 - **FHIR Mapping**: `MedicaidProviderRiskCategory` code system value "low"
 
-##### Moderate Risk Category  
+###### Moderate Risk Category  
 - **Criteria**: Durable medical equipment suppliers, home health agencies
 - **Screening**: On-site visits, fingerprint-based criminal background checks
 - **FHIR Mapping**: `MedicaidProviderRiskCategory` code system value "moderate"
 
-##### High Risk Category
+###### High Risk Category
 - **Criteria**: Providers with prior sanctions, new provider types with high fraud risk
 - **Screening**: Enhanced screening including site visits, criminal background checks
 - **FHIR Mapping**: `MedicaidProviderRiskCategory` code system value "high"
 
-### 42 CFR 455.460 - Denial of Enrollment
+#### 42 CFR 455.460 - Denial of Enrollment
 
-#### Mandatory Denial Criteria
+##### Mandatory Denial Criteria
 States must deny enrollment for providers who:
 
 1. **Criminal Convictions**: Convicted of felony within 10 years
@@ -57,9 +53,9 @@ States must deny enrollment for providers who:
 - `MedicaidVerificationResult` documents verification failures
 - `VerificationResult.primarySource` tracks verification sources
 
-### 42 CFR 455.470 - Temporary Moratoria
+#### 42 CFR 455.470 - Temporary Moratoria
 
-#### Moratorium Authority
+##### Moratorium Authority
 CMS may impose temporary moratoria on enrollment of new providers when:
 
 - **Fraud Risk**: High levels of fraud, waste, or abuse
@@ -70,9 +66,9 @@ CMS may impose temporary moratoria on enrollment of new providers when:
 - `MedicaidApplicationStatus` code "on-hold" for moratorium periods
 - Extensions to capture moratorium reasons and duration
 
-### 42 CFR 455.104 - Disclosure Requirements
+#### 42 CFR 455.104 - Disclosure Requirements
 
-#### Ownership and Control Disclosures
+##### Ownership and Control Disclosures
 Providers must disclose:
 
 1. **Ownership Information**: Names and addresses of persons with 5% or greater ownership
@@ -85,9 +81,9 @@ Providers must disclose:
 - `Organization.partOf` for organizational relationships
 - Extensions for detailed ownership percentages and relationships
 
-### 42 CFR 455.436 - Revalidation Requirements
+#### 42 CFR 455.436 - Revalidation Requirements
 
-#### Revalidation Cycle
+##### Revalidation Cycle
 - **Standard Revalidation**: Every 5 years for all providers
 - **High-Risk Revalidation**: More frequent revalidation for high-risk providers
 - **Triggered Revalidation**: Based on specific events or concerns
@@ -97,9 +93,9 @@ Providers must disclose:
 - `PractitionerRole.period` to track enrollment periods
 - `MedicaidVerificationResult` for revalidation documentation
 
-## State-Specific Requirements
+### State-Specific Requirements
 
-### State Plan Amendments (SPAs)
+#### State Plan Amendments (SPAs)
 States may implement additional requirements through SPAs:
 
 - **Enhanced Screening**: Additional screening beyond federal minimums
@@ -112,7 +108,7 @@ States may implement additional requirements through SPAs:
 - Configurable value sets for state requirements
 - State customization framework in implementation guidance
 
-### Waiver Programs
+#### Waiver Programs
 States with approved waivers may have modified requirements:
 
 - **1115 Waivers**: Demonstration waivers with alternative approaches
@@ -123,9 +119,9 @@ States with approved waivers may have modified requirements:
 - Waiver-specific profiles and extensions
 - Program-specific identifiers and classifications
 
-## Compliance Monitoring
+### Compliance Monitoring
 
-### Ongoing Monitoring Requirements (42 CFR 455.450)
+#### Ongoing Monitoring Requirements (42 CFR 455.450)
 States must implement ongoing monitoring including:
 
 - **Claims Analysis**: Review of billing patterns and outliers
@@ -138,7 +134,7 @@ States must implement ongoing monitoring including:
 - Audit trail through FHIR AuditEvent resources
 - Monitoring frequency in verification schedules
 
-### Reporting Requirements
+#### Reporting Requirements
 States must report to CMS on:
 
 - **Enrollment Statistics**: Number of providers enrolled by type and risk category
@@ -150,9 +146,9 @@ States must report to CMS on:
 - Measure resources for reporting metrics
 - Aggregated data through FHIR reporting mechanisms
 
-## Data Quality and Integrity
+### Data Quality and Integrity
 
-### Data Validation Requirements
+#### Data Validation Requirements
 - **Real-time Validation**: Immediate validation of submitted data
 - **Cross-system Verification**: Verification against external databases
 - **Data Completeness**: Ensuring all required fields are populated
@@ -163,7 +159,7 @@ States must report to CMS on:
 - OperationOutcome for validation results
 - Provenance tracking for data sources
 
-### Audit Trail Requirements
+#### Audit Trail Requirements
 - **Complete Audit Trail**: All system activities must be logged
 - **Data Integrity**: Protection against unauthorized modifications
 - **Access Controls**: Role-based access to sensitive data
@@ -174,9 +170,9 @@ States must report to CMS on:
 - Provenance resources for data lineage
 - Security labels for access control
 
-## Privacy and Security
+### Privacy and Security
 
-### HIPAA Compliance
+#### HIPAA Compliance
 - **Administrative Safeguards**: Policies and procedures for data protection
 - **Physical Safeguards**: Protection of physical systems and media
 - **Technical Safeguards**: Access controls, encryption, and audit logs
@@ -186,7 +182,7 @@ States must report to CMS on:
 - OAuth 2.0 for authentication and authorization
 - Encryption for data at rest and in transit
 
-### State Privacy Laws
+#### State Privacy Laws
 - **Additional Privacy Requirements**: State-specific privacy protections
 - **Consent Management**: Provider consent for data sharing
 - **Data Minimization**: Limiting data collection to necessary information
@@ -195,41 +191,41 @@ States must report to CMS on:
 - Consent resources for data sharing agreements
 - Security labels for state-specific requirements
 
-## Implementation Considerations
+### Implementation Considerations
 
-### System Requirements
+#### System Requirements
 - **Scalability**: Support for large numbers of providers
 - **Performance**: Sub-second response times for critical operations
 - **Availability**: 99.9% uptime for enrollment systems
 - **Disaster Recovery**: Backup and recovery procedures
 
-### Integration Requirements
+#### Integration Requirements
 - **External Systems**: Integration with licensing boards, exclusion databases
 - **Real-time Processing**: Immediate processing of critical updates
 - **Batch Processing**: Efficient processing of large data volumes
 - **Error Handling**: Robust error handling and recovery
 
-### Testing and Validation
+#### Testing and Validation
 - **Compliance Testing**: Verification of regulatory compliance
 - **Performance Testing**: Load and stress testing
 - **Security Testing**: Penetration testing and vulnerability assessment
 - **User Acceptance Testing**: Validation by end users
 
-## Regulatory Updates
+### Regulatory Updates
 
-### Monitoring Regulatory Changes
+#### Monitoring Regulatory Changes
 - **Federal Register**: Monitoring for new regulations and updates
 - **CMS Guidance**: Implementation of new CMS guidance documents
 - **State Notifications**: Tracking state-specific regulatory changes
 - **Industry Updates**: Staying current with industry best practices
 
-### Change Management
+#### Change Management
 - **Impact Assessment**: Evaluating impact of regulatory changes
 - **Implementation Planning**: Planning for system updates
 - **Testing and Validation**: Ensuring compliance with new requirements
 - **Communication**: Notifying stakeholders of changes
 
-## Conclusion
+### Conclusion
 
 This FHIR implementation guide provides a comprehensive framework for compliance with federal and state Medicaid provider enrollment and credentialing regulations. By mapping regulatory requirements to FHIR resources and profiles, the guide enables states to implement compliant systems while maintaining flexibility for state-specific requirements.
 
@@ -240,4 +236,3 @@ The implementation supports:
 - Integration with external verification systems
 - Scalable and secure system architecture
 
-Regular updates to this guide will ensure continued compliance as regulations evolve and new requirements are established.

@@ -15,10 +15,6 @@ copyrightYear: 2025+
 releaseLabel: ci-build
 license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
 jurisdiction: urn:iso:std:iso:3166#US "United States of America" # https://www.hl7.org/fhir/valueset-jurisdiction.html
-publisher:
-  name: HL7 International - Financial Management Work Group
-  url: http://www.hl7.org/Special/committees/fm
-  email: fm@lists.hl7.org
 
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
@@ -34,48 +30,32 @@ dependencies:
 pages:
   index.md:
     title: Home
-  background.md:
-    title: Background
-    mita-overview.md:
-      title: MITA Overview
-    mita-implementation.md:
-      title: MITA Implementation Guidance
-    cms-regulations.md:
-      title: CMS Regulations
-  implementation-guidance.md:
-    title: Implementation Guidance
-    state-customization.md:
-      title: State Customization Framework
-    data-quality.md:
-      title: Data Quality Framework
-    security-privacy.md:
-      title: Security and Privacy Considerations
-    versioning.md:
-      title: Versioning Strategy
-    tmsis-mapping.md:
-      title: TMSIS to FHIR Mapping
-    transition-strategy.md:
-      title: Transition Strategy
-    testing-framework.md:
-      title: Testing Framework
-  profiles.md:
-    title: Profiles and Extensions
+  mita-overview.md:
+    title: MITA Overview
+  mita-implementation.md:
+    title: MITA Implementation Guidance
+  cms-regulations.md:
+    title: CMS Regulations
+  artifacts.html:
+    title: FHIR Artifacts
+  state-customization.md:
+    title: State Customization Framework
+  data-quality.md:
+    title: Data Quality Framework
+  security-privacy.md:
+    title: Security and Privacy Considerations
+  versioning-strategy.md:
+    title: Versioning Strategy
+  tmsis-mapping.md:
+    title: TMSIS to FHIR Mapping
+  transition-strategy.md:
+    title: Transition Strategy
+  testing-framework.md:
+    title: Testing Framework
   examples.md:
     title: Examples
-  artifacts.html:
-    title: Artifacts Summary
-
-# The parameters property represents IG.definition.parameter. Rather
-# than a list of code/value pairs (as in the ImplementationGuide
-# resource), the code is the YAML key. If a parameter allows repeating
-# values, the value in the YAML should be a sequence/array.
-parameters:
-  excludettl: true
-  validation: [allow-any-extensions, no-broken-links]
-  show-inherited-invariants: false
-  usage-stats-opt-out: false
-  logging: progress
-  auto-oid-root: 2.16.840.1.113883.4.642.40.42
+  downloads.md:
+    title: Downloads
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │
@@ -87,79 +67,95 @@ parameters:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Home: index.html
+  Table of Contents: toc.html
   Background:
-    MITA Overview: background.html#mita-overview
-    MITA Implementation: background.html#mita-implementation
-    CMS Regulations: background.html#cms-regulations
+    MITA Overview: mita-overview.html
+    MITA Implementation: mita-implementation.html
+    CMS Regulations: cms-regulations.html
+  FHIR Artifacts:
+    Profiles: artifacts.html#structures-resource-profiles
+    Extensions: artifacts.html#structures-extension-definitions
+    Terminology: artifacts.html#terminology-value-sets
   Implementation Guidance:
-    State Customization: implementation-guidance.html#state-customization
-    Data Quality: implementation-guidance.html#data-quality
-    Security & Privacy: implementation-guidance.html#security-privacy
-    Versioning: implementation-guidance.html#versioning
-    TMSIS Mapping: implementation-guidance.html#tmsis-mapping
-    Transition Strategy: implementation-guidance.html#transition-strategy
-    Testing Framework: implementation-guidance.html#testing-framework
-  Profiles: profiles.html
+    State Customization Framework: state-customization.html
+    Data Quality Framework: data-quality.html
+    Security & Privacy Considerations: security-privacy.html
+    Versioning Strategy: versioning-strategy.html
+    TMSIS to FHIR Mapping: tmsis-mapping.html
+    Transition Strategy: transition-strategy.html
+    Testing Framework: testing-framework.html
   Examples: examples.html
-  Artifacts: artifacts.html
+  Downloads: downloads.html
+
+# The parameters property represents IG.definition.parameter. Rather
+# than a list of code/value pairs (as in the ImplementationGuide
+# resource), the code is the YAML key. If a parameter allows repeating
+# values, the value in the YAML should be a sequence/array.
+parameters:
+  # excludettl: true
+  # validation: [allow-any-extensions, no-broken-links]
+  # show-inherited-invariants: false
+  # usage-stats-opt-out: false
+  logging: progress
+  # auto-oid-root: 2.16.840.1.113883.4.642.40.42
 
 # Contact information
-contact:
-  - name: HL7 International - Financial Management Work Group
-    telecom:
-      - system: url
-        value: http://www.hl7.org/Special/committees/fm
-      - system: email
-        value: fm@lists.hl7.org
+# contact:
+#   - name: HL7 International - Financial Management Work Group
+#     telecom:
+#       - system: url
+#         value: http://www.hl7.org/Special/committees/fm
+#       - system: email
+#         value: fm@lists.hl7.org
 
 # The global property corresponds to the IG.global property, but it
 # uses the type as the YAML key and the profile as its value.
-global:
-  Practitioner: http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-practitioner
-  PractitionerRole: http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-practitioner-role
-  Organization: http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-organization
+# global:
+#   Practitioner: http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-practitioner
+#   PractitionerRole: http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-practitioner-role
+#   Organization: http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-organization
 
 # Groups can control certain aspects of the IG generation.
-groups:
-  ProviderProfiles:
-    name: Provider Profiles
-    description: Profiles for provider credentialing and enrollment
-    resources:
-    - StructureDefinition/medicaid-practitioner
-    - StructureDefinition/medicaid-practitioner-role
-    - StructureDefinition/medicaid-organization
-    - StructureDefinition/medicaid-healthcare-service
-    - StructureDefinition/medicaid-location
-  CredentialingProfiles:
-    name: Credentialing Profiles
-    description: Profiles for credentialing workflows
-    resources:
-    - StructureDefinition/medicaid-verification-result
-    - StructureDefinition/medicaid-endpoint
-  Extensions:
-    name: Extensions
-    description: Extensions for Medicaid provider credentialing
-    resources:
-    - StructureDefinition/medicaid-provider-id
-    - StructureDefinition/medicaid-enrollment-status
-    - StructureDefinition/medicaid-credentialing-status
-    - StructureDefinition/medicaid-specialty-board-certification
-  ValueSets:
-    name: Value Sets
-    description: Value sets for Medicaid provider credentialing
-    resources:
-    - ValueSet/medicaid-provider-types
-    - ValueSet/medicaid-enrollment-statuses
-    - ValueSet/medicaid-credentialing-statuses
-    - ValueSet/medicaid-specialty-codes
+# groups:
+#   ProviderProfiles:
+#     name: Provider Profiles
+#     description: Profiles for provider credentialing and enrollment
+#     resources:
+#     - StructureDefinition/medicaid-practitioner
+#     - StructureDefinition/medicaid-practitioner-role
+#     - StructureDefinition/medicaid-organization
+#     - StructureDefinition/medicaid-healthcare-service
+#     - StructureDefinition/medicaid-location
+#   CredentialingProfiles:
+#     name: Credentialing Profiles
+#     description: Profiles for credentialing workflows
+#     resources:
+#     - StructureDefinition/medicaid-verification-result
+#     - StructureDefinition/medicaid-endpoint
+#   Extensions:
+#     name: Extensions
+#     description: Extensions for Medicaid provider credentialing
+#     resources:
+#     - StructureDefinition/medicaid-provider-id
+#     - StructureDefinition/medicaid-enrollment-status
+#     - StructureDefinition/medicaid-credentialing-status
+#     - StructureDefinition/medicaid-specialty-board-certification
+#   ValueSets:
+#     name: Value Sets
+#     description: Value sets for Medicaid provider credentialing
+#     resources:
+#     - ValueSet/medicaid-provider-types
+#     - ValueSet/medicaid-enrollment-statuses
+#     - ValueSet/medicaid-credentialing-statuses
+#     - ValueSet/medicaid-specialty-codes
 
 # ╭──────────────────────────────────────────SUSHI flags───────────────────────────────────────────╮
 # │  The flags below configure aspects of how SUSHI processes FSH.                                 │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-FSHOnly: false
-applyExtensionMetadataToRoot: true
+# FSHOnly: false
+# applyExtensionMetadataToRoot: true
 
-instanceOptions:
-  manualSliceOrdering: true
-  setMetaProfile: always
-  setId: always
+# instanceOptions:
+#   manualSliceOrdering: true
+#   setMetaProfile: always
+#   setId: always

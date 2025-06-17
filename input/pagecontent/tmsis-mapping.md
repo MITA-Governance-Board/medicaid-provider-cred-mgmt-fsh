@@ -1,12 +1,8 @@
-# TMSIS to FHIR Data Element Mapping
-
-## Overview
-
 This section provides detailed mapping between Transformed Medicaid Statistical Information System (TMSIS) data elements and FHIR resources for provider credentialing and enrollment. These mappings facilitate data exchange and interoperability between state Medicaid systems and FHIR-based implementations.
 
-## TMSIS Provider File (PRV) Mappings
+### TMSIS Provider File (PRV) Mappings
 
-### Provider Demographics
+#### Provider Demographics
 
 | TMSIS Element | FHIR Resource | FHIR Element | Notes |
 |---------------|---------------|--------------|-------|
@@ -20,7 +16,7 @@ This section provides detailed mapping between Transformed Medicaid Statistical 
 | PROV_DOING_BUS_AS_NAME | Organization | alias | DBA name |
 | PROV_TAX_ID | Organization | identifier[tin].value | Tax identification number |
 
-### Provider Address Information
+#### Provider Address Information
 
 | TMSIS Element | FHIR Resource | FHIR Element | Notes |
 |---------------|---------------|--------------|-------|
@@ -32,7 +28,7 @@ This section provides detailed mapping between Transformed Medicaid Statistical 
 | PROV_ADR_ZIP_CD | Practitioner/Organization | address.postalCode | ZIP code |
 | PROV_ADR_CNTY_CD | Practitioner/Organization | address.district | County code |
 
-### Provider Contact Information
+#### Provider Contact Information
 
 | TMSIS Element | FHIR Resource | FHIR Element | Notes |
 |---------------|---------------|--------------|-------|
@@ -40,7 +36,7 @@ This section provides detailed mapping between Transformed Medicaid Statistical 
 | PROV_FAX_NUM | Practitioner/Organization | telecom[fax].value | Fax number |
 | PROV_EMAIL_ADR | Practitioner/Organization | telecom[email].value | Email address |
 
-### Provider Enrollment Information
+#### Provider Enrollment Information
 
 | TMSIS Element | FHIR Resource | FHIR Element | Notes |
 |---------------|---------------|--------------|-------|
@@ -50,7 +46,7 @@ This section provides detailed mapping between Transformed Medicaid Statistical 
 | PROV_ENRLMT_END_DT | PractitionerRole | period.end | Enrollment end date |
 | PROV_ENRLMT_STUS_DT | PractitionerRole | extension[enrollmentStatus].valueCodeableConcept.extension[statusDate] | Status date |
 
-### Provider Specialty Information
+#### Provider Specialty Information
 
 | TMSIS Element | FHIR Resource | FHIR Element | Notes |
 |---------------|---------------|--------------|-------|
@@ -58,7 +54,7 @@ This section provides detailed mapping between Transformed Medicaid Statistical 
 | PROV_SPCLTY_CD_SYS | PractitionerRole | specialty.coding.system | Specialty code system |
 | PROV_SPCLTY_DESC | PractitionerRole | specialty.coding.display | Specialty description |
 
-### Provider License Information
+#### Provider License Information
 
 | TMSIS Element | FHIR Resource | FHIR Element | Notes |
 |---------------|---------------|--------------|-------|
@@ -68,9 +64,9 @@ This section provides detailed mapping between Transformed Medicaid Statistical 
 | LIC_EFF_DT | Practitioner | qualification.period.start | License effective date |
 | LIC_END_DT | Practitioner | qualification.period.end | License expiration date |
 
-## TMSIS Provider Location File (PLO) Mappings
+### TMSIS Provider Location File (PLO) Mappings
 
-### Location Information
+#### Location Information
 
 | TMSIS Element | FHIR Resource | FHIR Element | Notes |
 |---------------|---------------|--------------|-------|
@@ -84,7 +80,7 @@ This section provides detailed mapping between Transformed Medicaid Statistical 
 | PROV_LOC_STATE_CD | Location | address.state | Location state |
 | PROV_LOC_ZIP_CD | Location | address.postalCode | Location ZIP code |
 
-### Service Location Details
+#### Service Location Details
 
 | TMSIS Element | FHIR Resource | FHIR Element | Notes |
 |---------------|---------------|--------------|-------|
@@ -93,9 +89,9 @@ This section provides detailed mapping between Transformed Medicaid Statistical 
 | PROV_LOC_EMAIL_ADR | Location | telecom[email].value | Location email |
 | PROV_LOC_WEB_ADR | Location | telecom[url].value | Location website |
 
-## TMSIS Provider Affiliated Group File (PAG) Mappings
+### TMSIS Provider Affiliated Group File (PAG) Mappings
 
-### Group Affiliation Information
+#### Group Affiliation Information
 
 | TMSIS Element | FHIR Resource | FHIR Element | Notes |
 |---------------|---------------|--------------|-------|
@@ -106,7 +102,7 @@ This section provides detailed mapping between Transformed Medicaid Statistical 
 | AFLTD_GRP_NPI | Organization | identifier[npi].value | Group NPI |
 | AFLTD_GRP_TAX_ID | Organization | identifier[tin].value | Group tax ID |
 
-### Affiliation Details
+#### Affiliation Details
 
 | TMSIS Element | FHIR Resource | FHIR Element | Notes |
 |---------------|---------------|--------------|-------|
@@ -114,9 +110,9 @@ This section provides detailed mapping between Transformed Medicaid Statistical 
 | AFLTD_END_DT | PractitionerRole | period.end | Affiliation end date |
 | AFLTD_TYPE_CD | PractitionerRole | code.coding.code | Affiliation type |
 
-## TMSIS Provider Taxonomy File (PTX) Mappings
+### TMSIS Provider Taxonomy File (PTX) Mappings
 
-### Taxonomy Information
+#### Taxonomy Information
 
 | TMSIS Element | FHIR Resource | FHIR Element | Notes |
 |---------------|---------------|--------------|-------|
@@ -127,85 +123,85 @@ This section provides detailed mapping between Transformed Medicaid Statistical 
 | TXNMY_DESC | PractitionerRole | specialty.coding.display | Taxonomy description |
 | PRMRY_TXNMY_IND | PractitionerRole | specialty.extension[primary] | Primary taxonomy indicator |
 
-## Data Transformation Guidelines
+### Data Transformation Guidelines
 
-### Data Type Conversions
+#### Data Type Conversions
 
-#### Date Fields
+##### Date Fields
 - **TMSIS Format**: YYYY-MM-DD
 - **FHIR Format**: date (YYYY-MM-DD)
 - **Transformation**: Direct mapping, validate format
 
-#### Code Fields
+##### Code Fields
 - **TMSIS Format**: State-specific codes
 - **FHIR Format**: CodeableConcept with system and code
 - **Transformation**: Map to appropriate code system
 
-#### Identifier Fields
+##### Identifier Fields
 - **TMSIS Format**: String values
 - **FHIR Format**: Identifier with system and value
 - **Transformation**: Add appropriate system URI
 
-### Data Quality Considerations
+#### Data Quality Considerations
 
-#### Required Field Validation
+##### Required Field Validation
 - Ensure all required FHIR elements are populated
 - Validate data formats and ranges
 - Check for missing or invalid values
 - Implement business rule validation
 
-#### Data Standardization
+##### Data Standardization
 - Standardize name formats (proper case)
 - Validate and format addresses
 - Normalize phone numbers and email addresses
 - Standardize code values
 
-### Mapping Implementation
+#### Mapping Implementation
 
-#### ETL Process Flow
+##### ETL Process Flow
 1. **Extract**: Retrieve data from TMSIS files
 2. **Transform**: Apply mapping rules and validations
 3. **Load**: Create FHIR resources and validate
 4. **Verify**: Confirm data integrity and completeness
 
-#### Error Handling
+##### Error Handling
 - Log transformation errors and warnings
 - Implement data quality reports
 - Provide error correction workflows
 - Maintain audit trails
 
-## State-Specific Considerations
+### State-Specific Considerations
 
-### Code System Mappings
+#### Code System Mappings
 
-#### Provider Type Codes
+##### Provider Type Codes
 States may need to map local provider type codes to standard FHIR value sets:
 - Map state codes to NUCC taxonomy codes
 - Create custom code systems for state-specific types
 - Maintain crosswalk tables for code translations
 
-#### Specialty Codes
+##### Specialty Codes
 - Map state specialty codes to standard taxonomies
 - Use NUCC taxonomy codes where possible
 - Create extensions for state-specific specialties
 
-#### Status Codes
+##### Status Codes
 - Map enrollment status codes to standard value sets
 - Define state-specific status codes as needed
 - Maintain consistent status definitions
 
-### Data Extensions
+#### Data Extensions
 
-#### State-Specific Data Elements
+##### State-Specific Data Elements
 States may need to create extensions for data not covered by base FHIR:
 - Additional identifier types
 - State-specific enrollment information
 - Local regulatory requirements
 - Custom verification data
 
-## Implementation Examples
+### Implementation Examples
 
-### Provider Transformation Example
+#### Provider Transformation Example
 
 ```json
 {
@@ -245,7 +241,7 @@ States may need to create extensions for data not covered by base FHIR:
 }
 ```
 
-### Organization Transformation Example
+#### Organization Transformation Example
 
 ```json
 {
@@ -280,30 +276,28 @@ States may need to create extensions for data not covered by base FHIR:
 }
 ```
 
-## Validation and Testing
+### Validation and Testing
 
-### Data Validation Rules
+#### Data Validation Rules
 - Validate FHIR resource conformance
 - Check business rule compliance
 - Verify data completeness and accuracy
 - Test transformation logic
 
-### Testing Strategies
+#### Testing Strategies
 - Unit testing for individual mappings
 - Integration testing for complete workflows
 - Performance testing for large datasets
 - User acceptance testing with state stakeholders
 
-## Maintenance and Updates
+### Maintenance and Updates
 
-### Ongoing Maintenance
+#### Ongoing Maintenance
 - Monitor TMSIS file format changes
 - Update mappings for new data elements
 - Maintain code system crosswalks
 - Provide technical support
 
-### Version Management
+#### Version Management
 - Track mapping version changes
 - Maintain backward compatibility
-- Document mapping updates
-- Coordinate with state implementations

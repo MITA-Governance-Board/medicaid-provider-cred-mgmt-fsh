@@ -1,41 +1,37 @@
-# State Customization Framework
-
-## Overview
-
 This framework provides guidance for states to customize the Medicaid Provider Credentialing and Enrollment Implementation Guide to meet their specific requirements while maintaining interoperability and compliance with federal regulations.
 
-## Customization Principles
+### Customization Principles
 
-### 1. Federal Compliance First
+1. **Federal Compliance First**
 - All customizations must comply with federal regulations
 - Core CMS requirements cannot be modified
 - Additional requirements may be added as needed
 - State-specific regulations must be accommodated
 
-### 2. Interoperability Preservation
+2. **Interoperability Preservation**
 - FHIR R4 base specifications must be maintained
 - US Core profiles should be extended, not replaced
 - Standard terminologies should be used where possible
 - Custom extensions should follow FHIR guidelines
 
-### 3. Backward Compatibility
+3. **Backward Compatibility**
 - Changes should not break existing implementations
 - Version management strategies must be employed
 - Migration paths must be provided
 - Deprecation policies should be established
 
-## Customization Areas
+### Customization Areas
 
-### Profile Extensions
+#### Profile Extensions
 
-#### State-Specific Extensions
+##### State-Specific Extensions
 States may create extensions for:
 - Additional provider identifiers
 - State-specific licensing requirements
 - Local credentialing criteria
 - Regional network requirements
 
-#### Example: State Medical License Extension
+##### Example: State Medical License Extension
 ```fsh
 Extension: StateMedicalLicense
 Id: state-medical-license
@@ -50,16 +46,16 @@ Description: "State-specific medical license information"
     restrictions 0..*
 ```
 
-### Value Set Customization
+#### Value Set Customization
 
-#### State-Specific Code Systems
+##### State-Specific Code Systems
 States may define:
 - Local provider types
 - State-specific specialties
 - Regional service categories
 - Custom status codes
 
-#### Example: State Provider Types
+##### Example: State Provider Types
 ```fsh
 CodeSystem: StateProviderTypes
 Id: state-provider-types
@@ -71,15 +67,15 @@ Description: "State-specific provider type codes"
 * #critical-access-hospital "Critical Access Hospital"
 ```
 
-### Workflow Customizations
+#### Workflow Customizations
 
-#### State-Specific Processes
+##### State-Specific Processes
 - Additional verification steps
 - Enhanced screening requirements
 - Custom approval workflows
 - State-specific documentation
 
-#### Credentialing Workflow Example
+##### Credentialing Workflow Example
 1. **Initial Application**
    - Standard FHIR Practitioner resource
    - State-specific extensions for additional data
@@ -95,16 +91,16 @@ Description: "State-specific provider type codes"
    - Local credentialing committee review
    - Custom approval criteria
 
-### Data Element Customizations
+#### Data Element Customizations
 
-#### Required vs. Optional Elements
+##### Required vs. Optional Elements
 States may:
 - Make optional elements required
 - Add new required elements
 - Define state-specific constraints
 - Implement additional validation rules
 
-#### Example: Enhanced Address Requirements
+##### Example: Enhanced Address Requirements
 ```fsh
 Profile: StateEnhancedPractitioner
 Parent: MedicaidPractitioner
@@ -117,61 +113,61 @@ Id: state-enhanced-practitioner
 * address.country 1..1
 ```
 
-## Implementation Strategies
+### Implementation Strategies
 
-### Layered Approach
+#### Layered Approach
 
-#### Layer 1: Federal Base
+##### Layer 1: Federal Base
 - Core FHIR R4 specifications
 - US Core profiles
 - Federal regulatory requirements
 - CMS mandated elements
 
-#### Layer 2: State Additions
+##### Layer 2: State Additions
 - State-specific extensions
 - Additional value sets
 - Enhanced constraints
 - Local requirements
 
-#### Layer 3: Local Customizations
+##### Layer 3: Local Customizations
 - Regional variations
 - Local policy implementations
 - Organizational preferences
 - Pilot program features
 
-### Configuration Management
+#### Configuration Management
 
-#### Environment-Specific Configurations
+##### Environment-Specific Configurations
 - Development environment settings
 - Testing environment parameters
 - Production environment constraints
 - Disaster recovery configurations
 
-#### Feature Flags
+##### Feature Flags
 - Enable/disable state-specific features
 - Gradual rollout capabilities
 - A/B testing support
 - Emergency rollback options
 
-## Technical Implementation
+### Technical Implementation
 
-### Extension Development
+#### Extension Development
 
-#### Best Practices
+##### Best Practices
 - Use descriptive extension names
 - Provide comprehensive documentation
 - Include usage examples
 - Implement proper validation
 
-#### Extension Registry
+##### Extension Registry
 - Maintain central registry of extensions
 - Version control for extensions
 - Impact analysis for changes
 - Reusability assessment
 
-### Profile Derivation
+#### Profile Derivation
 
-#### Inheritance Hierarchy
+##### Inheritance Hierarchy
 ```
 FHIR Base Resource
   ↓
@@ -184,32 +180,32 @@ State-Specific Profile
 Local Implementation Profile
 ```
 
-#### Constraint Application
+##### Constraint Application
 - Cardinality restrictions
 - Value set bindings
 - Data type constraints
 - Business rule validation
 
-### API Customization
+#### API Customization
 
-#### Endpoint Extensions
+##### Endpoint Extensions
 - State-specific search parameters
 - Custom operation definitions
 - Enhanced query capabilities
 - Specialized workflows
 
-#### Example: State Provider Search
+##### Example: State Provider Search
 ```
 GET /Practitioner?state-license=IL123456
 GET /Practitioner?credentialing-status=pending
 GET /Organization?network-region=chicago
 ```
 
-## Governance Framework
+### Governance Framework
 
-### Change Management
+#### Change Management
 
-#### Change Request Process
+##### Change Request Process
 1. **Requirement Identification**
    - Business need assessment
    - Regulatory requirement analysis
@@ -231,100 +227,99 @@ GET /Organization?network-region=chicago
    - Deployment approach
    - Training requirements
 
-### Version Management
+#### Version Management
 
-#### Versioning Strategy
+##### Versioning Strategy
 - Semantic versioning (Major.Minor.Patch)
 - Backward compatibility maintenance
 - Deprecation timeline management
 - Migration support provision
 
-#### Release Management
+##### Release Management
 - Scheduled release cycles
 - Emergency patch procedures
 - Rollback capabilities
 - Communication protocols
 
-## Testing and Validation
+### Testing and Validation
 
-### Conformance Testing
+#### Conformance Testing
 
-#### Profile Validation
+##### Profile Validation
 - FHIR validator integration
 - Custom constraint testing
 - Business rule validation
 - Cross-profile consistency
 
-#### Interoperability Testing
+##### Interoperability Testing
 - Multi-state data exchange
 - Federal reporting compliance
 - Third-party system integration
 - Performance impact assessment
 
-### User Acceptance Testing
+#### User Acceptance Testing
 
-#### State-Specific Scenarios
+##### State-Specific Scenarios
 - Local workflow validation
 - User interface customization
 - Performance requirement verification
 - Security compliance testing
 
-## Documentation Requirements
+### Documentation Requirements
 
-### Technical Documentation
+#### Technical Documentation
 
-#### Profile Documentation
+##### Profile Documentation
 - Detailed profile descriptions
 - Usage examples and scenarios
 - Implementation guidance
 - Known limitations and constraints
 
-#### API Documentation
+##### API Documentation
 - Endpoint specifications
 - Request/response examples
 - Error handling procedures
 - Rate limiting policies
 
-### User Documentation
+#### User Documentation
 
-#### Implementation Guides
+##### Implementation Guides
 - Step-by-step setup instructions
 - Configuration parameter descriptions
 - Troubleshooting procedures
 - Best practice recommendations
 
-#### Training Materials
+##### Training Materials
 - User training guides
 - Administrator documentation
 - Developer resources
 - Video tutorials and demos
 
-## Support and Maintenance
+### Support and Maintenance
 
-### Ongoing Support
+#### Ongoing Support
 
-#### Technical Support
+##### Technical Support
 - Help desk services
 - Bug reporting procedures
 - Enhancement request process
 - Community support forums
 
-#### Maintenance Activities
+##### Maintenance Activities
 - Regular updates and patches
 - Security vulnerability management
 - Performance optimization
 - Capacity planning
 
-### Community Engagement
+#### Community Engagement
 
-#### State Collaboration
+##### State Collaboration
 - Best practice sharing
 - Common challenge discussion
 - Joint development initiatives
 - Resource pooling opportunities
 
-#### Vendor Ecosystem
+##### Vendor Ecosystem
 - Vendor certification programs
 - Integration testing support
 - Reference implementation provision
-- Technical consultation services
