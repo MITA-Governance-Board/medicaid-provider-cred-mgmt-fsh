@@ -284,34 +284,197 @@ For group practices with multiple providers:
 
 ### Validation Examples
 
+This section provides detailed examples that demonstrate proper validation of required elements and constraints for each profile in the implementation guide.
+
 #### Required Field Validation
 
-All examples demonstrate compliance with required fields:
+The following validation examples demonstrate compliance with all required fields for each profile:
 
-- **Practitioner**: NPI, name, telecom, address, gender, birthDate, qualification
-- **PractitionerRole**: active, period.start, practitioner, code, specialty, telecom
-- **Organization**: identifier (Medicaid ID), active, type, name, telecom, address
+- **[Medicaid Practitioner Validation Example](Practitioner-MedicaidPractitionerValidationExample.html)**
+  - Demonstrates all required fields: NPI, name, telecom, address, gender, birthDate, qualification
+  - Shows proper use of the MedicaidProviderIdExtension
+  - Includes complete board certification information
+
+- **[Medicaid Practitioner Role Validation Example](PractitionerRole-MedicaidPractitionerRoleValidationExample.html)**
+  - Demonstrates all required fields: active, period.start, practitioner, code, specialty, telecom
+  - Shows proper use of required extensions: enrollmentStatus, credentialingStatus
+  - Includes proper references to other resources
+
+- **[Medicaid Organization Validation Example](Organization-MedicaidOrganizationValidationExample.html)**
+  - Demonstrates all required fields: identifier (NPI, Medicaid ID, TIN), active, type, name, telecom, address
+  - Shows proper slicing of identifiers
+  - Includes all required contact information
+
+- **[Medicaid Location Validation Example](Location-MedicaidLocationValidationExample.html)**
+  - Demonstrates all required fields for a location
+  - Shows proper reference to managing organization
+  - Includes all required address and telecom elements
+
+- **[Medicaid Healthcare Service Validation Example](HealthcareService-MedicaidHealthcareServiceValidationExample.html)**
+  - Demonstrates all required fields for a healthcare service
+  - Shows proper references to organization and location
+  - Includes required service categorization
+
+- **[Medicaid Endpoint Validation Example](Endpoint-MedicaidEndpointValidationExample.html)**
+  - Demonstrates all required fields for an endpoint
+  - Shows proper connection type and payload specifications
+  - Includes required address information
+
+- **[Medicaid Verification Result Validation Example](VerificationResult-MedicaidVerificationResultValidationExample.html)**
+  - Demonstrates all required fields for verification results
+  - Shows proper primary source information
+  - Includes required validation status and dates
+
+#### Constraint Validation
+
+The validation examples demonstrate proper handling of constraints defined in the profiles:
+
+1. **Cardinality Constraints**
+   - Required elements (1..1) are always present
+   - Elements with minimum cardinality > 0 are always included
+   - Elements with maximum cardinality > 1 demonstrate multiple instances where appropriate
+
+2. **Reference Constraints**
+   - All references point to resources of the correct type
+   - References use the proper Medicaid-specific profiles
+   - Example: PractitionerRole.practitioner only references MedicaidPractitioner
+
+3. **Value Set Binding Constraints**
+   - Required bindings use codes from the specified value sets
+   - Extensible bindings demonstrate proper use of preferred codes
+   - Example: enrollmentStatus uses codes from MedicaidEnrollmentStatuses value set
+
+4. **Slicing Constraints**
+   - Sliced elements demonstrate proper use of discriminators
+   - Required slices are always present
+   - Example: Organization.identifier demonstrates proper slicing for npi, medicaidId, and tin
 
 #### Terminology Validation
 
-Examples use appropriate code systems:
+Examples use appropriate code systems for all coded elements:
 
 - **Provider Types**: NUCC Provider Taxonomy
+  ```json
+  "code": {
+    "coding": [
+      {
+        "system": "http://nucc.org/provider-taxonomy",
+        "code": "207Q00000X",
+        "display": "Family Medicine"
+      }
+    ]
+  }
+  ```
+
 - **Specialties**: NUCC Provider Taxonomy
+  ```json
+  "specialty": [
+    {
+      "coding": [
+        {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "207Q00000X",
+          "display": "Family Medicine"
+        }
+      ]
+    }
+  ]
+  ```
+
 - **Enrollment Status**: Medicaid-specific code system
+  ```json
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-enrollment-status",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/us/medicaid-provider-credentialing/CodeSystem/medicaid-enrollment-status",
+            "code": "enrolled",
+            "display": "Enrolled"
+          }
+        ]
+      }
+    }
+  ]
+  ```
+
 - **Credentialing Status**: Medicaid-specific code system
+  ```json
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/us/medicaid-provider-credentialing/StructureDefinition/medicaid-credentialing-status",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/us/medicaid-provider-credentialing/CodeSystem/medicaid-credentialing-status",
+            "code": "credentialed",
+            "display": "Credentialed"
+          }
+        ]
+      }
+    }
+  ]
+  ```
 
 #### Reference Validation
 
 All references in the examples point to valid resources:
 
 - PractitionerRole references valid Practitioner and Organization
+  ```json
+  "practitioner": {
+    "reference": "Practitioner/MedicaidPractitionerValidationExample"
+  },
+  "organization": {
+    "reference": "Organization/MedicaidOrganizationValidationExample"
+  }
+  ```
+
 - Location references valid managing Organization
+  ```json
+  "managingOrganization": {
+    "reference": "Organization/MedicaidOrganizationValidationExample"
+  }
+  ```
+
 - HealthcareService references valid Organization and Location
+  ```json
+  "providedBy": {
+    "reference": "Organization/MedicaidOrganizationValidationExample"
+  },
+  "location": [
+    {
+      "reference": "Location/MedicaidLocationValidationExample"
+    }
+  ]
+  ```
+
+#### Exclusion and Sanction Validation
+
+Special validation examples demonstrate proper handling of exclusions and sanctions:
+
+- **[Medicaid Excluded Provider Example](Practitioner-MedicaidExcludedProviderExample.html)**
+  - Demonstrates a practitioner who has been excluded from Medicaid
+  - Shows all required elements for a valid practitioner resource
+
+- **[Medicaid Suspended Practitioner Role Example](PractitionerRole-MedicaidSuspendedPractitionerRoleExample.html)**
+  - Demonstrates a suspended enrollment status
+  - Shows proper period.end date for the suspension
+  - Maintains all required elements despite suspended status
+
+- **[Medicaid Exclusion Verification Example](VerificationResult-MedicaidExclusionVerificationExample.html)**
+  - Demonstrates verification result for an exclusion check
+  - Shows failed validation status
+  - Includes proper failureAction of "suspend"
 
 ### Error Handling Examples
 
+The following examples demonstrate proper error handling for validation failures.
+
 #### Missing Required Fields
+
+When a required field is missing, the system should return an appropriate error message:
 
 ```json
 {
@@ -331,7 +494,53 @@ All references in the examples point to valid resources:
 }
 ```
 
+#### Missing Required Extension
+
+When a required extension is missing, the system should return an appropriate error message:
+
+```json
+{
+  "resourceType": "OperationOutcome",
+  "issue": [
+    {
+      "severity": "error",
+      "code": "required",
+      "details": {
+        "text": "PractitionerRole.extension:enrollmentStatus is required"
+      },
+      "location": [
+        "PractitionerRole.extension"
+      ]
+    }
+  ]
+}
+```
+
+#### Missing Required Slice
+
+When a required slice is missing, the system should return an appropriate error message:
+
+```json
+{
+  "resourceType": "OperationOutcome",
+  "issue": [
+    {
+      "severity": "error",
+      "code": "required",
+      "details": {
+        "text": "Organization.identifier:medicaidId is required"
+      },
+      "location": [
+        "Organization.identifier"
+      ]
+    }
+  ]
+}
+```
+
 #### Invalid Code System
+
+When a code from an incorrect code system is used, the system should return an appropriate error message:
 
 ```json
 {
@@ -341,10 +550,54 @@ All references in the examples point to valid resources:
       "severity": "error",
       "code": "code-invalid",
       "details": {
-        "text": "Invalid enrollment status code"
+        "text": "The code 'active' is not valid in the system 'http://hl7.org/fhir/us/medicaid-provider-credentialing/CodeSystem/medicaid-enrollment-status'"
       },
       "location": [
         "PractitionerRole.extension[enrollmentStatus].valueCodeableConcept.coding[0].code"
+      ]
+    }
+  ]
+}
+```
+
+#### Invalid Reference Type
+
+When a reference points to an incorrect resource type, the system should return an appropriate error message:
+
+```json
+{
+  "resourceType": "OperationOutcome",
+  "issue": [
+    {
+      "severity": "error",
+      "code": "structure",
+      "details": {
+        "text": "PractitionerRole.practitioner must reference a MedicaidPractitioner resource"
+      },
+      "location": [
+        "PractitionerRole.practitioner"
+      ]
+    }
+  ]
+}
+```
+
+#### Invalid Cardinality
+
+When a cardinality constraint is violated, the system should return an appropriate error message:
+
+```json
+{
+  "resourceType": "OperationOutcome",
+  "issue": [
+    {
+      "severity": "error",
+      "code": "structure",
+      "details": {
+        "text": "MedicaidOrganization.telecom minimum cardinality is 1, but found 0"
+      },
+      "location": [
+        "Organization.telecom"
       ]
     }
   ]

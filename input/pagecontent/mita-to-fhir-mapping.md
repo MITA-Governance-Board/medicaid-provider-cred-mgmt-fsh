@@ -1,73 +1,73 @@
-# MITA to FHIR Resource Mapping
+This page provides concrete mappings between the [Medicaid Information Technology Architecture (MITA) 3.0](https://www.medicaid.gov/medicaid/data-systems/medicaid-information-technology-architecture/medicaid-information-technology-architecture-framework/index.html) business processes and [FHIR resources](https://www.hl7.org/fhir/resourcelist.html) defined in this Implementation Guide. These mappings are designed to help implementers align their FHIR implementations with MITA requirements.
 
-This page provides concrete mappings between the Medicaid Information Technology Architecture (MITA) 3.0 business processes and FHIR resources defined in this Implementation Guide. These mappings are designed to help implementers align their FHIR implementations with MITA requirements.
+> **Note:** This implementation guide references official MITA documentation maintained by the Centers for Medicare & Medicaid Services (CMS) and FHIR resources defined by HL7. Links to official resources are provided throughout this document.
 
-## MITA Business Process to FHIR Resource Mappings
+### MITA Business Process to FHIR Resource Mappings
 
-The following tables map MITA 3.0 business processes related to provider management to specific FHIR resources, profiles, and operations defined in this Implementation Guide.
+The following tables map [MITA 3.0 business processes](https://www.medicaid.gov/medicaid/data-systems/medicaid-information-technology-architecture/medicaid-information-technology-architecture-framework/mita-30/index.html) related to provider management to specific FHIR resources, profiles, and operations defined in this Implementation Guide.
 
-### Provider Management Business Area
+#### Provider Management Business Area
 
-#### PM01: Enroll Provider
-
-| MITA Business Process | FHIR Resources/Profiles | Implementation Pattern |
-|------------------------|-------------------------|------------------------|
-| PM01.01: Determine Provider Eligibility | `MedicaidPractitioner`, `MedicaidOrganization` | Use these profiles to capture provider information during eligibility determination. |
-| PM01.02: Enroll Provider | `MedicaidPractitionerRole` with `MedicaidEnrollmentStatusExtension` | Create a PractitionerRole resource with enrollment status extension set to "pending" initially. |
-| PM01.03: Disenroll Provider | `MedicaidPractitionerRole` with `MedicaidEnrollmentStatusExtension` | Update the enrollment status extension to "terminated" and set end date in the period element. |
-| PM01.04: Inquire Provider Information | `SearchParameter/MedicaidProviderIdSearchParameter`, `SearchParameter/MedicaidOrganizationIdSearchParameter` | Use these search parameters to query provider information. |
-| PM01.05: Manage Provider Communication | `MedicaidEndpoint` | Use this profile to manage communication endpoints for providers. |
-| PM01.06: Manage Provider Information | `MedicaidPractitioner`, `MedicaidOrganization`, `MedicaidPractitionerRole` | Use these profiles to manage provider information throughout the lifecycle. |
-
-#### PM02: Provider Support
+##### PM01: Enroll Provider ([MITA Business Process](https://www.medicaid.gov/medicaid/data-systems/medicaid-information-technology-architecture/medicaid-information-technology-architecture-framework/mita-30/index.html))
 
 | MITA Business Process | FHIR Resources/Profiles | Implementation Pattern |
 |------------------------|-------------------------|------------------------|
-| PM02.01: Manage Provider Grievance and Appeal | `MedicaidVerificationResult` | Use this profile to document grievance and appeal processes. |
-| PM02.02: Manage Provider Information | `MedicaidPractitioner`, `MedicaidOrganization` | Use these profiles to update provider information based on support requests. |
-| PM02.03: Perform Provider Outreach | `MedicaidEndpoint` | Use this profile to manage communication channels for provider outreach. |
+| PM01.01: Determine Provider Eligibility | [`MedicaidPractitioner`](StructureDefinition-medicaid-practitioner.html), [`MedicaidOrganization`](StructureDefinition-medicaid-organization.html) | Use these profiles to capture provider information during eligibility determination. |
+| PM01.02: Enroll Provider | [`MedicaidPractitionerRole`](StructureDefinition-medicaid-practitioner-role.html) with `MedicaidEnrollmentStatusExtension` | Create a PractitionerRole resource with enrollment status extension set to "pending" initially. |
+| PM01.03: Disenroll Provider | [`MedicaidPractitionerRole`](StructureDefinition-medicaid-practitioner-role.html) with `MedicaidEnrollmentStatusExtension` | Update the enrollment status extension to "terminated" and set end date in the period element. |
+| PM01.04: Inquire Provider Information | [`SearchParameter/MedicaidProviderIdSearchParameter`](SearchParameter-MedicaidProviderIdSearchParameter.html), [`SearchParameter/MedicaidOrganizationIdSearchParameter`](SearchParameter-MedicaidOrganizationIdSearchParameter.html) | Use these search parameters to query provider information. |
+| PM01.05: Manage Provider Communication | [`MedicaidEndpoint`](StructureDefinition-medicaid-endpoint.html) | Use this profile to manage communication endpoints for providers. |
+| PM01.06: Manage Provider Information | [`MedicaidPractitioner`](StructureDefinition-medicaid-practitioner.html), [`MedicaidOrganization`](StructureDefinition-medicaid-organization.html), [`MedicaidPractitionerRole`](StructureDefinition-medicaid-practitioner-role.html) | Use these profiles to manage provider information throughout the lifecycle. |
 
-#### PM03: Manage Provider Information
-
-| MITA Business Process | FHIR Resources/Profiles | Implementation Pattern |
-|------------------------|-------------------------|------------------------|
-| PM03.01: Manage Provider Information | `MedicaidPractitioner`, `MedicaidOrganization`, `MedicaidPractitionerRole` | Use these profiles to manage comprehensive provider information. |
-| PM03.02: Manage Provider Communication | `MedicaidEndpoint` | Use this profile to manage provider communication preferences and channels. |
-| PM03.03: Maintain Provider Roster | Bundle of `MedicaidPractitioner`, `MedicaidOrganization`, `MedicaidPractitionerRole` resources | Use FHIR Bundles to maintain and exchange provider roster information. |
-
-#### PM04: Terminate Provider
+##### PM02: Provider Support
 
 | MITA Business Process | FHIR Resources/Profiles | Implementation Pattern |
 |------------------------|-------------------------|------------------------|
-| PM04.01: Terminate Provider | `MedicaidPractitionerRole` with `MedicaidEnrollmentStatusExtension` | Update enrollment status to "terminated" and set end date in period element. |
-| PM04.02: Notify Provider of Termination | `MedicaidEndpoint` | Use this profile to manage communication regarding termination. |
+| PM02.01: Manage Provider Grievance and Appeal | [`MedicaidVerificationResult`](StructureDefinition-medicaid-verification-result.html) | Use this profile to document grievance and appeal processes. |
+| PM02.02: Manage Provider Information | [`MedicaidPractitioner`](StructureDefinition-medicaid-practitioner.html), [`MedicaidOrganization`](StructureDefinition-medicaid-organization.html) | Use these profiles to update provider information based on support requests. |
+| PM02.03: Perform Provider Outreach | [`MedicaidEndpoint`](StructureDefinition-medicaid-endpoint.html) | Use this profile to manage communication channels for provider outreach. |
 
-#### PM05: Provider Credentialing
-
-| MITA Business Process | FHIR Resources/Profiles | Implementation Pattern |
-|------------------------|-------------------------|------------------------|
-| PM05.01: Perform Provider Credentialing | `MedicaidPractitionerRole` with `MedicaidCredentialingStatusExtension`, `MedicaidVerificationResult` | Use these profiles to track credentialing status and verification activities. |
-| PM05.02: Manage Credentialing Information | `MedicaidPractitioner.qualification`, `MedicaidSpecialtyBoardCertificationExtension` | Use these elements to manage detailed credentialing information. |
-| PM05.03: Perform Provider Screening | `MedicaidVerificationResult` | Use this profile to document screening results with appropriate validation types. |
-| PM05.04: Manage Site Visit | `MedicaidVerificationResult` with validationType = "in-person" | Use this profile to document site visit results. |
-
-#### PM06: Provider Sanctions
+##### PM03: Manage Provider Information
 
 | MITA Business Process | FHIR Resources/Profiles | Implementation Pattern |
 |------------------------|-------------------------|------------------------|
-| PM06.01: Manage Provider Sanction | `MedicaidPractitionerRole` with `MedicaidEnrollmentStatusExtension` set to "suspended" | Use this pattern to implement provider sanctions. |
-| PM06.02: Notify Provider of Sanction | `MedicaidEndpoint` | Use this profile to manage communication regarding sanctions. |
+| PM03.01: Manage Provider Information | [`MedicaidPractitioner`](StructureDefinition-medicaid-practitioner.html), [`MedicaidOrganization`](StructureDefinition-medicaid-organization.html), [`MedicaidPractitionerRole`](StructureDefinition-medicaid-practitioner-role.html) | Use these profiles to manage comprehensive provider information. |
+| PM03.02: Manage Provider Communication | [`MedicaidEndpoint`](StructureDefinition-medicaid-endpoint.html) | Use this profile to manage provider communication preferences and channels. |
+| PM03.03: Maintain Provider Roster | [Bundle](https://www.hl7.org/fhir/bundle.html) of [`MedicaidPractitioner`](StructureDefinition-medicaid-practitioner.html), [`MedicaidOrganization`](StructureDefinition-medicaid-organization.html), [`MedicaidPractitionerRole`](StructureDefinition-medicaid-practitioner-role.html) resources | Use FHIR Bundles to maintain and exchange provider roster information. |
 
-#### PM07: Provider Revalidation
+##### PM04: Terminate Provider
 
 | MITA Business Process | FHIR Resources/Profiles | Implementation Pattern |
 |------------------------|-------------------------|------------------------|
-| PM07.01: Manage Provider Revalidation | `MedicaidPractitionerRole` with `MedicaidEnrollmentStatusExtension`, `MedicaidVerificationResult` | Use these profiles to track revalidation status and verification activities. |
-| PM07.02: Notify Provider of Revalidation | `MedicaidEndpoint` | Use this profile to manage communication regarding revalidation. |
+| PM04.01: Terminate Provider | [`MedicaidPractitionerRole`](StructureDefinition-medicaid-practitioner-role.html) with `MedicaidEnrollmentStatusExtension` | Update enrollment status to "terminated" and set end date in period element. |
+| PM04.02: Notify Provider of Termination | [`MedicaidEndpoint`](StructureDefinition-medicaid-endpoint.html) | Use this profile to manage communication regarding termination. |
 
-## MITA Business Capability Matrix to FHIR Implementation Levels
+##### PM05: Provider Credentialing
 
-The following table maps MITA maturity levels for provider management capabilities to corresponding FHIR implementation patterns.
+| MITA Business Process | FHIR Resources/Profiles | Implementation Pattern |
+|------------------------|-------------------------|------------------------|
+| PM05.01: Perform Provider Credentialing | [`MedicaidPractitionerRole`](StructureDefinition-medicaid-practitioner-role.html) with `MedicaidCredentialingStatusExtension`, [`MedicaidVerificationResult`](StructureDefinition-medicaid-verification-result.html) | Use these profiles to track credentialing status and verification activities. |
+| PM05.02: Manage Credentialing Information | [`MedicaidPractitioner.qualification`](StructureDefinition-medicaid-practitioner.html#Practitioner.qualification), `MedicaidSpecialtyBoardCertificationExtension` | Use these elements to manage detailed credentialing information. |
+| PM05.03: Perform Provider Screening | [`MedicaidVerificationResult`](StructureDefinition-medicaid-verification-result.html) | Use this profile to document screening results with appropriate validation types. |
+| PM05.04: Manage Site Visit | [`MedicaidVerificationResult`](StructureDefinition-medicaid-verification-result.html) with validationType = "in-person" | Use this profile to document site visit results. |
+
+##### PM06: Provider Sanctions
+
+| MITA Business Process | FHIR Resources/Profiles | Implementation Pattern |
+|------------------------|-------------------------|------------------------|
+| PM06.01: Manage Provider Sanction | [`MedicaidPractitionerRole`](StructureDefinition-medicaid-practitioner-role.html) with `MedicaidEnrollmentStatusExtension` set to "suspended" | Use this pattern to implement provider sanctions. |
+| PM06.02: Notify Provider of Sanction | [`MedicaidEndpoint`](StructureDefinition-medicaid-endpoint.html) | Use this profile to manage communication regarding sanctions. |
+
+##### PM07: Provider Revalidation
+
+| MITA Business Process | FHIR Resources/Profiles | Implementation Pattern |
+|------------------------|-------------------------|------------------------|
+| PM07.01: Manage Provider Revalidation | [`MedicaidPractitionerRole`](StructureDefinition-medicaid-practitioner-role.html) with `MedicaidEnrollmentStatusExtension`, [`MedicaidVerificationResult`](StructureDefinition-medicaid-verification-result.html) | Use these profiles to track revalidation status and verification activities. |
+| PM07.02: Notify Provider of Revalidation | [`MedicaidEndpoint`](StructureDefinition-medicaid-endpoint.html) | Use this profile to manage communication regarding revalidation. |
+
+### MITA Business Capability Matrix to FHIR Implementation Levels
+
+The following table maps [MITA maturity levels](https://www.medicaid.gov/medicaid/data-systems/medicaid-information-technology-architecture/medicaid-information-technology-architecture-framework/mita-maturity-model/index.html) for provider management capabilities to corresponding FHIR implementation patterns.
 
 | MITA Capability | Level 1 (Initial) | Level 2 (Managed) | Level 3 (Defined) | Level 4 (Measured) | Level 5 (Optimized) |
 |-----------------|-------------------|-------------------|-------------------|-------------------|---------------------|
@@ -76,21 +76,21 @@ The following table maps MITA maturity levels for provider management capabiliti
 | Provider Information Management | Basic `MedicaidPractitioner` and `MedicaidOrganization` data | Structured data with defined extensions | Complete implementation with terminology bindings | Real-time updates with subscription notifications | Advanced data quality monitoring |
 | Provider Communication | Basic contact information in resources | `MedicaidEndpoint` with defined communication channels | Structured communication with defined protocols | Automated communication based on status changes | Personalized communication based on provider preferences |
 
-## FHIR API Implementation for MITA Business Processes
+### FHIR API Implementation for MITA Business Processes
 
-The following table provides guidance on implementing FHIR API operations to support MITA business processes.
+The following table provides guidance on implementing [FHIR API operations](https://www.hl7.org/fhir/http.html) to support MITA business processes.
 
 | MITA Business Process | FHIR API Operations | Implementation Notes |
 |------------------------|---------------------|----------------------|
-| Provider Enrollment | `POST [base]/Practitioner`<br>`POST [base]/Organization`<br>`POST [base]/PractitionerRole` | Create resources in sequence, linking them with appropriate references. |
-| Provider Information Update | `PUT [base]/Practitioner/[id]`<br>`PUT [base]/Organization/[id]`<br>`PUT [base]/PractitionerRole/[id]` | Update resources while maintaining consistency across related resources. |
-| Provider Search | `GET [base]/Practitioner?identifier=[system]|[value]`<br>`GET [base]/PractitionerRole?specialty=[code]` | Use defined search parameters to implement search operations. |
-| Provider Verification | `POST [base]/VerificationResult` | Create verification results linked to the appropriate target resources. |
-| Provider Termination | `PUT [base]/PractitionerRole/[id]` | Update the PractitionerRole with appropriate status and end date. |
+| Provider Enrollment | [`POST [base]/Practitioner`](https://www.hl7.org/fhir/http.html#create)<br>[`POST [base]/Organization`](https://www.hl7.org/fhir/http.html#create)<br>[`POST [base]/PractitionerRole`](https://www.hl7.org/fhir/http.html#create) | Create resources in sequence, linking them with appropriate references. |
+| Provider Information Update | [`PUT [base]/Practitioner/[id]`](https://www.hl7.org/fhir/http.html#update)<br>[`PUT [base]/Organization/[id]`](https://www.hl7.org/fhir/http.html#update)<br>[`PUT [base]/PractitionerRole/[id]`](https://www.hl7.org/fhir/http.html#update) | Update resources while maintaining consistency across related resources. |
+| Provider Search | [`GET [base]/Practitioner?identifier=[system]|[value]`](https://www.hl7.org/fhir/http.html#search)<br>[`GET [base]/PractitionerRole?specialty=[code]`](https://www.hl7.org/fhir/http.html#search) | Use defined search parameters to implement search operations. |
+| Provider Verification | [`POST [base]/VerificationResult`](https://www.hl7.org/fhir/http.html#create) | Create verification results linked to the appropriate target resources. |
+| Provider Termination | [`PUT [base]/PractitionerRole/[id]`](https://www.hl7.org/fhir/http.html#update) | Update the PractitionerRole with appropriate status and end date. |
 
-## MITA Data Architecture to FHIR Resource Mapping
+### MITA Data Architecture to FHIR Resource Mapping
 
-The following table maps MITA data architecture concepts to FHIR resource elements.
+The following table maps [MITA data architecture](https://www.medicaid.gov/medicaid/data-systems/medicaid-information-technology-architecture/medicaid-information-technology-architecture-framework/mita-30/index.html) concepts to [FHIR resource elements](https://www.hl7.org/fhir/resourcelist.html).
 
 | MITA Data Concept | FHIR Resource Element | Implementation Notes |
 |-------------------|------------------------|----------------------|
@@ -104,22 +104,22 @@ The following table maps MITA data architecture concepts to FHIR resource elemen
 | Provider Credential | `MedicaidPractitioner.qualification`<br>`MedicaidSpecialtyBoardCertificationExtension` | Capture detailed credential information. |
 | Provider Verification | `MedicaidVerificationResult` | Document verification activities and results. |
 
-## MITA Technical Architecture to FHIR Implementation
+### MITA Technical Architecture to FHIR Implementation
 
-The following table maps MITA technical architecture patterns to FHIR implementation patterns.
+The following table maps [MITA technical architecture patterns](https://www.medicaid.gov/medicaid/data-systems/medicaid-information-technology-architecture/medicaid-information-technology-architecture-framework/mita-30/index.html) to [FHIR implementation patterns](https://www.hl7.org/fhir/implementationguide.html).
 
 | MITA Technical Pattern | FHIR Implementation Pattern | Implementation Notes |
 |------------------------|------------------------------|----------------------|
-| Service-Oriented Architecture | FHIR RESTful API | Implement standard FHIR API operations for each resource. |
-| Enterprise Service Bus | FHIR Messaging | Use FHIR messaging with MessageHeader resources for asynchronous communication. |
-| Master Data Management | FHIR Resources with References | Use consistent references between resources to maintain data integrity. |
-| Business Rules Engine | FHIR PlanDefinition and ActivityDefinition | Define business rules using FHIR workflow resources. |
-| Identity Management | FHIR IdentitySystem and Identifier | Use consistent identifier systems with appropriate validation. |
-| Access Control | FHIR Consent and Security Labels | Implement appropriate security controls using FHIR security mechanisms. |
+| Service-Oriented Architecture | [FHIR RESTful API](https://www.hl7.org/fhir/http.html) | Implement standard FHIR API operations for each resource. |
+| Enterprise Service Bus | [FHIR Messaging](https://www.hl7.org/fhir/messaging.html) | Use FHIR messaging with [MessageHeader](https://www.hl7.org/fhir/messageheader.html) resources for asynchronous communication. |
+| Master Data Management | [FHIR Resources with References](https://www.hl7.org/fhir/references.html) | Use consistent references between resources to maintain data integrity. |
+| Business Rules Engine | [FHIR PlanDefinition](https://www.hl7.org/fhir/plandefinition.html) and [ActivityDefinition](https://www.hl7.org/fhir/activitydefinition.html) | Define business rules using FHIR workflow resources. |
+| Identity Management | [FHIR IdentitySystem](https://www.hl7.org/fhir/identifier-registry.html) and [Identifier](https://www.hl7.org/fhir/datatypes.html#Identifier) | Use consistent identifier systems with appropriate validation. |
+| Access Control | [FHIR Consent](https://www.hl7.org/fhir/consent.html) and [Security Labels](https://www.hl7.org/fhir/security-labels.html) | Implement appropriate security controls using FHIR security mechanisms. |
 
-## Implementation Examples
+### Implementation Examples
 
-### Example 1: Provider Enrollment Process
+#### Example 1: Provider Enrollment Process
 
 ```
 // Step 1: Create Practitioner
@@ -333,7 +333,7 @@ PUT [base]/PractitionerRole/[id]
 }
 ```
 
-### Example 2: Provider Revalidation Process
+#### Example 2: Provider Revalidation Process
 
 ```
 // Step 1: Update PractitionerRole with revalidation status
@@ -419,36 +419,53 @@ PUT [base]/PractitionerRole/[id]
 }
 ```
 
-## MITA to FHIR Implementation Roadmap
+### MITA to FHIR Implementation Roadmap
 
-The following roadmap provides guidance on implementing FHIR resources to achieve MITA maturity levels.
+The following roadmap provides guidance on implementing FHIR resources to achieve [MITA maturity levels](https://www.medicaid.gov/medicaid/data-systems/medicaid-information-technology-architecture/medicaid-information-technology-architecture-framework/mita-maturity-model/index.html).
 
-### Level 1: Initial Implementation
+#### Level 1: Initial Implementation
 
 1. Implement basic `MedicaidPractitioner` and `MedicaidOrganization` profiles
 2. Capture basic provider information
 3. Implement manual processes for enrollment and credentialing
 
-### Level 2: Managed Implementation
+#### Level 2: Managed Implementation
 
 1. Implement `MedicaidPractitionerRole` with status extensions
 2. Implement `MedicaidVerificationResult` for basic verification
 3. Implement basic FHIR API operations for provider management
 
-### Level 3: Defined Implementation
+#### Level 3: Defined Implementation
 
 1. Implement all profiles with proper references
 2. Implement all extensions with appropriate terminology bindings
 3. Implement standard workflows for provider management processes
 
-### Level 4: Measured Implementation
+#### Level 4: Measured Implementation
 
 1. Implement all search parameters for efficient querying
 2. Implement metrics collection using FHIR Measure resources
 3. Implement real-time verification with external systems
 
-### Level 5: Optimized Implementation
+#### Level 5: Optimized Implementation
 
 1. Implement advanced analytics for provider management
 2. Implement predictive screening using historical data
 3. Implement personalized communication based on provider preferences
+
+### Additional Resources
+
+#### MITA Resources
+
+- [MITA Framework 3.0](https://www.medicaid.gov/medicaid/data-systems/medicaid-information-technology-architecture/medicaid-information-technology-architecture-framework/index.html) - Official CMS documentation for MITA
+- [MITA Maturity Model](https://www.medicaid.gov/medicaid/data-systems/medicaid-information-technology-architecture/medicaid-information-technology-architecture-framework/mita-maturity-model/index.html) - Information about MITA maturity levels
+- [MITA Business Process Model](https://www.medicaid.gov/medicaid/data-systems/medicaid-information-technology-architecture/medicaid-information-technology-architecture-framework/mita-30/index.html) - Documentation of MITA business processes
+- [CMS Medicaid Enterprise Certification](https://www.medicaid.gov/medicaid/data-systems/certification/index.html) - Information about Medicaid system certification
+
+#### FHIR Resources
+
+- [FHIR Specification](https://www.hl7.org/fhir/) - Official HL7 FHIR specification
+- [FHIR Resource List](https://www.hl7.org/fhir/resourcelist.html) - Complete list of FHIR resources
+- [FHIR RESTful API](https://www.hl7.org/fhir/http.html) - Documentation for FHIR RESTful API operations
+- [FHIR US Core Implementation Guide](https://www.hl7.org/fhir/us/core/) - US Core profiles that form the basis for many Medicaid profiles
+- [FHIR Terminology](https://www.hl7.org/fhir/terminologies.html) - FHIR terminology resources and binding strengths

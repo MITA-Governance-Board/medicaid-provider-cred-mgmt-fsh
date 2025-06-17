@@ -35,11 +35,17 @@ pages:
   mita-implementation.md:
     title: MITA Implementation Guidance
   mita-to-fhir-mapping.md:
-    title: MITA to FHIR Mapping
+    title: MITA to FHIR Resource Mapping
+  workflow-patterns.md:
+    title: Workflow Patterns
   cms-regulations.md:
     title: CMS Regulations
   artifacts.html:
     title: FHIR Artifacts
+  profiles.md:
+    title: Profiles and Extensions
+  search-parameters.md:
+    title: Search Parameters
   terminology.md:
     title: Terminology Binding Guidance
   state-customization.md:
@@ -56,10 +62,18 @@ pages:
     title: Transition Strategy
   testing-framework.md:
     title: Testing Framework
+  real-world-implementations.md:
+    title: Real-World FHIR Implementation Examples
+  implementation-community.md:
+    title: Implementation Community and Knowledge Sharing
+  feedback-process.md:
+    title: Implementation Guide Feedback Process
   examples.md:
     title: Examples
   downloads.md:
     title: Downloads
+  roadmap.md:
+    title: Implementation Guide Roadmap
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │
@@ -75,14 +89,17 @@ menu:
   Background:
     MITA Overview: mita-overview.html
     MITA Implementation: mita-implementation.html
-    MITA to FHIR Mapping: mita-to-fhir-mapping.html
+    MITA to FHIR Resource Mapping: mita-to-fhir-mapping.html
+    Workflow Patterns: workflow-patterns.html
     CMS Regulations: cms-regulations.html
   FHIR Artifacts:
     Profiles: artifacts.html#structures-resource-profiles
     Extensions: artifacts.html#structures-extension-definitions
     Terminology: artifacts.html#terminology-value-sets
   Implementation Guidance:
-    Terminology Binding: terminology.html
+    Profiles and Extensions: profiles.html
+    Search Parameters: search-parameters.html
+    Terminology Binding Guidance: terminology.html
     State Customization Framework: state-customization.html
     Data Quality Framework: data-quality.html
     Security & Privacy Considerations: security-privacy.html
@@ -90,8 +107,12 @@ menu:
     TMSIS to FHIR Mapping: tmsis-mapping.html
     Transition Strategy: transition-strategy.html
     Testing Framework: testing-framework.html
+    Real World FHIR Implementations: real-world-implementations.html
+    Implementation Community: implementation-community.html
+    Feedback Process: feedback-process.html
   Examples: examples.html
   Downloads: downloads.html
+  Roadmap: roadmap.html
 
 # The parameters property represents IG.definition.parameter. Rather
 # than a list of code/value pairs (as in the ImplementationGuide

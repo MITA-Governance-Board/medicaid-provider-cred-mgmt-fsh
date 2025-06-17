@@ -7,6 +7,26 @@ This section outlines security and privacy requirements for Medicaid provider cr
 - **Physical Safeguards**: Facility access controls, workstation security, device controls
 - **Technical Safeguards**: Access control, audit controls, integrity, transmission security
 
+#### Medicaid-Specific Requirements
+
+##### CMS Minimum Acceptable Risk Standards for Exchanges (MARS-E)
+- **Required for Medicaid systems**: All Medicaid provider enrollment systems must comply with MARS-E 2.0 or later
+- **Control implementation**: 372 security and privacy controls across 21 control families
+- **Annual assessment**: Required annual security assessment and continuous monitoring
+- **Plan of Action and Milestones (POA&M)**: Required remediation tracking for identified vulnerabilities
+
+##### Medicaid Information Technology Architecture (MITA)
+- **MITA 3.0 Security and Privacy**: Alignment with MITA 3.0 security and privacy standards
+- **MITA Maturity Model**: Progressive security capabilities from Level 1 to Level 5
+- **Business Architecture alignment**: Security controls mapped to MITA business processes
+- **Information Architecture alignment**: Data classification and protection requirements
+
+##### CMS Medicaid Provider Enrollment Compendium (MPEC)
+- **Provider screening requirements**: Security controls for provider screening processes
+- **Identity verification standards**: Requirements for provider identity verification
+- **Fraud prevention controls**: Technical safeguards for fraud detection and prevention
+- **System security requirements**: Specific security requirements for provider enrollment systems
+
 #### State Privacy Laws
 - State-specific privacy regulations
 - Professional licensing board requirements
@@ -28,6 +48,13 @@ This section outlines security and privacy requirements for Medicaid provider cr
 - SMS, email, or authenticator app options
 - Hardware tokens for high-privilege accounts
 - Risk-based authentication triggers
+
+##### Medicaid Provider Identity Proofing
+- **Identity Assurance Level 2 (IAL2)**: Required for provider identity verification
+- **Remote identity proofing**: Standards for remote identity verification
+- **In-person identity proofing**: Requirements for in-person verification
+- **Identity evidence validation**: Standards for validating identity documents
+- **Knowledge-based verification**: Requirements for knowledge-based authentication
 
 ##### Single Sign-On (SSO)
 - SAML 2.0 or OpenID Connect integration
@@ -70,6 +97,26 @@ This section outlines security and privacy requirements for Medicaid provider cr
 - Encrypted file systems
 - Key management systems
 - Hardware security modules (HSM)
+
+#### Medicaid Provider Data Protection
+
+##### Provider Sensitive Information
+- **Provider SSN/TIN protection**: Special handling requirements for tax identifiers
+- **Banking information security**: Enhanced controls for financial information
+- **License information protection**: Safeguards for professional license data
+- **Background check results**: Secure handling of screening results
+
+##### Provider Data Classification
+- **Level 1 (Public)**: Basic provider directory information
+- **Level 2 (Internal)**: General credentialing information
+- **Level 3 (Sensitive)**: Financial and detailed verification data
+- **Level 4 (Restricted)**: Background check results, investigation data
+
+##### Provider Data Sharing
+- **Trading partner agreements**: Requirements for data sharing with partners
+- **Business associate agreements**: HIPAA-compliant data sharing contracts
+- **Data exchange security**: Standards for secure data exchange
+- **Minimum necessary principle**: Limiting data shared to minimum required
 
 ##### Data in Transit
 - TLS 1.3 for all communications
@@ -318,6 +365,56 @@ This section outlines security and privacy requirements for Medicaid provider cr
 - Least privilege access
 - Continuous verification
 - Micro-segmentation
+
+#### Medicaid-Specific Implementation Patterns
+
+##### Provider Screening Security Pattern
+```
++-------------------+      +-------------------+      +-------------------+
+| Provider Portal   |      | Screening Service |      | External Sources  |
+| Authentication    +----->+ Secure API        +----->+ OIG, SAM, NPPES   |
+| Authorization     |      | Logging           |      | State Databases   |
++-------------------+      +-------------------+      +-------------------+
+         |                          |                          |
+         v                          v                          v
++-------------------+      +-------------------+      +-------------------+
+| Audit Service     |      | Notification      |      | Compliance        |
+| Complete Logging  |      | Secure Messaging  |      | Reporting         |
+| Tamper Protection |      | Delivery Tracking |      | Documentation     |
++-------------------+      +-------------------+      +-------------------+
+```
+
+##### Provider Data Security Pattern
+```
++-------------------+      +-------------------+      +-------------------+
+| Data Collection   |      | Data Storage      |      | Data Access       |
+| Input Validation  +----->+ Encryption        +----->+ Authentication    |
+| Minimal Collection|      | Access Controls   |      | Authorization     |
++-------------------+      +-------------------+      +-------------------+
+         |                          |                          |
+         v                          v                          v
++-------------------+      +-------------------+      +-------------------+
+| Data Transmission |      | Data Retention    |      | Data Disposal     |
+| TLS Encryption    |      | Retention Policies|      | Secure Deletion   |
+| API Security      |      | Archiving         |      | Media Sanitization|
++-------------------+      +-------------------+      +-------------------+
+```
+
+##### Provider Identity Management Pattern
+```
++-------------------+      +-------------------+      +-------------------+
+| Identity Proofing |      | Credential Mgmt   |      | Authentication    |
+| IAL2 Verification +----->+ Password Policies +----->+ MFA               |
+| Document Checks   |      | Certificate Mgmt  |      | SSO Integration   |
++-------------------+      +-------------------+      +-------------------+
+         |                          |                          |
+         v                          v                          v
++-------------------+      +-------------------+      +-------------------+
+| Access Management |      | Session Management|      | Audit Logging     |
+| RBAC              |      | Timeout Policies  |      | Authentication    |
+| Least Privilege   |      | Session Controls  |      | Authorization     |
++-------------------+      +-------------------+      +-------------------+
+```
 
 #### Development Security
 
