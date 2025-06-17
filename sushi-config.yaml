@@ -34,10 +34,14 @@ pages:
     title: MITA Overview
   mita-implementation.md:
     title: MITA Implementation Guidance
+  mita-to-fhir-mapping.md:
+    title: MITA to FHIR Mapping
   cms-regulations.md:
     title: CMS Regulations
   artifacts.html:
     title: FHIR Artifacts
+  terminology.md:
+    title: Terminology Binding Guidance
   state-customization.md:
     title: State Customization Framework
   data-quality.md:
@@ -71,12 +75,14 @@ menu:
   Background:
     MITA Overview: mita-overview.html
     MITA Implementation: mita-implementation.html
+    MITA to FHIR Mapping: mita-to-fhir-mapping.html
     CMS Regulations: cms-regulations.html
   FHIR Artifacts:
     Profiles: artifacts.html#structures-resource-profiles
     Extensions: artifacts.html#structures-extension-definitions
     Terminology: artifacts.html#terminology-value-sets
   Implementation Guidance:
+    Terminology Binding: terminology.html
     State Customization Framework: state-customization.html
     Data Quality Framework: data-quality.html
     Security & Privacy Considerations: security-privacy.html
