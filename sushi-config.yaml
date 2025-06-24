@@ -7,7 +7,7 @@ id: hl7.fhir.us.medicaid-provider-credentialing
 canonical: http://hl7.org/fhir/us/medicaid-provider-credentialing
 name: MedicaidProviderCredentialing
 title: Medicaid Provider Credentialing and Enrollment
-description: FHIR Implementation Guide for Medicaid Provider Credentialing and Enrollment aligned with MITA 3.0 and FHIR US Core 6.1.0
+description: FHIR Implementation Guide for Medicaid Provider Credentialing and Enrollment aligned with MITA and FHIR US Core 6.1.0
 status: draft # draft | active | retired | unknown
 version: 0.1.0
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html

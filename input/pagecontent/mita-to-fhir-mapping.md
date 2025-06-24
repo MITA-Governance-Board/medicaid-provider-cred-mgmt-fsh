@@ -4,7 +4,7 @@ This page provides concrete mappings between the [Medicaid Information Technolog
 
 ### MITA Business Process to FHIR Resource Mappings
 
-The following tables map [MITA 3.0 business processes](https://www.medicaid.gov/medicaid/data-systems/medicaid-information-technology-architecture/medicaid-information-technology-architecture-framework/mita-30/index.html) related to provider management to specific FHIR resources, profiles, and operations defined in this Implementation Guide.
+The following tables map [MITA business processes](https://www.medicaid.gov/medicaid/data-systems/medicaid-information-technology-architecture/medicaid-information-technology-architecture-framework/mita-30/index.html) related to provider management to specific FHIR resources, profiles, and operations defined in this Implementation Guide.
 
 #### Provider Management Business Area
 

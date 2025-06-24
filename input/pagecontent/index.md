@@ -14,14 +14,14 @@ This Implementation Guide addresses the following key areas:
 
 - **Data Exchange**: Interoperable data exchange between state Medicaid agencies, providers, credentialing organizations, managed care entities, and verification services. The IG defines standard APIs and interaction patterns for secure, efficient data sharing that reduces duplicate data entry, improves data accuracy, and streamlines multi-stakeholder processes.
 
-- **MITA Alignment**: Compliance with MITA 3.0 business and technical architecture principles, supporting states in achieving higher MITA maturity levels. The IG maps FHIR resources and workflows to MITA business processes, enabling states to implement standards-based solutions that align with federal guidance and support enhanced federal funding opportunities.
+- **MITA Alignment**: Compliance with MITA business and technical architecture principles, supporting states in achieving higher MITA maturity levels. The IG maps FHIR resources and workflows to MITA business processes, enabling states to implement standards-based solutions that align with federal guidance and support enhanced federal funding opportunities.
 
 - **Quality Assurance**: Data quality frameworks and validation processes that ensure accurate, complete provider information throughout the credentialing and enrollment lifecycle. The IG includes validation rules, data quality metrics, and best practices for data governance that help states maintain high-quality provider data for program integrity, provider directories, and reporting purposes.
 
 ## Key Features
 
-### MITA 3.0 Alignment
-This IG is designed to support MITA 3.0 objectives including:
+### MITA Alignment
+This IG is designed to support MITA objectives including:
 
 - **Business Architecture**: Standardized business processes for provider management that align with MITA Business Process Model (BPM) for Provider Management, including Provider Enrollment, Provider Information Management, Provider Support Services, and Provider Grievance and Appeal. The IG supports states in implementing these processes with configurable workflows that can be adapted to state-specific requirements while maintaining alignment with MITA standards.
 
@@ -88,7 +88,7 @@ The IG provides comprehensive resources for implementation:
 
 To begin implementing this IG, we recommend the following steps:
 
-1. Review the [MITA Overview](mita-overview.html) and [MITA to FHIR Mapping](mita-to-fhir-mapping.html) to understand how this IG aligns with MITA 3.0 framework.
+1. Review the [MITA Overview](mita-overview.html) and [MITA to FHIR Mapping](mita-to-fhir-mapping.html) to understand how this IG aligns with MITA framework.
 
 2. Explore the [Profiles](profiles.html) and [Extensions](extensions.html) to understand the core data models for provider credentialing and enrollment.
 

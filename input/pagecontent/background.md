@@ -6,9 +6,9 @@ This section provides essential background information on the underlying technol
 
 #### What is MITA?
 
-The Medicaid Information Technology Architecture (MITA) is a national framework designed to guide state Medicaid agencies in developing and implementing technology solutions that are interoperable, efficient, and aligned with federal requirements. MITA 3.0 represents the latest evolution of this framework, emphasizing cloud-first strategies, API-driven architectures, and enhanced data sharing capabilities.
+The Medicaid Information Technology Architecture (MITA) is a national framework designed to guide state Medicaid agencies in developing and implementing technology solutions that are interoperable, efficient, and aligned with federal requirements. MITA represents the latest evolution of this framework, emphasizing cloud-first strategies, API-driven architectures, and enhanced data sharing capabilities.
 
-#### MITA 3.0 Key Principles
+#### MITA Key Principles
 
 ##### Business Architecture
 - **Standardized Business Processes**: Common workflows across state Medicaid programs that establish consistent approaches to provider enrollment, credentialing, and management. These standardized processes reduce variation between states, simplify multi-state provider participation, and create opportunities for shared services and reusable components. The standardization includes common data elements, process steps, decision points, and outcome measures that enable benchmarking and comparative analysis across states.
@@ -42,9 +42,9 @@ This IG supports progression toward Levels 4 and 5 by providing standardized FHI
 
 ### MITA Implementation Guidance {#mita-implementation}
 
-#### Alignment with MITA 3.0 Objectives
+#### Alignment with MITA Objectives
 
-This Implementation Guide directly supports several MITA 3.0 strategic objectives:
+This Implementation Guide directly supports several MITA strategic objectives:
 
 ##### Objective 1: Improve Program Integrity
 - **Provider Verification**: Standardized processes for verifying provider credentials and qualifications that ensure only eligible providers participate in Medicaid programs. These processes include automated primary source verification of licenses, certifications, and educational credentials; comprehensive background checks including OIG exclusion list and criminal history screening; verification of practice locations and ownership relationships; and ongoing monitoring for adverse actions or status changes. Standardized verification reduces fraud risk, ensures compliance with federal screening requirements, and creates a more reliable foundation for program integrity activities.

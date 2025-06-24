@@ -1,8 +1,8 @@
-<i><b>NOTE: This information is based on MITA 3.0, which can be leveraged and updated for MITA 4.0</b></i>
+<i><b>NOTE: This information is based on MITA, which can be leveraged and updated for MITA 4.0</b></i>
 
-This section provides guidance for implementing Medicaid provider credentialing and enrollment systems in alignment with MITA 3.0 principles and this FHIR Implementation Guide.
+This section provides guidance for implementing Medicaid provider credentialing and enrollment systems in alignment with MITA principles and this FHIR Implementation Guide.
 
-### MITA 3.0 Implementation Principles
+### MITA Implementation Principles
 
 1. **Modular Architecture**
 - **Implement loosely coupled services**: Design system components with minimal dependencies between them, allowing each service to operate independently. This approach enables teams to develop, test, and deploy services separately, reducing the impact of changes and facilitating incremental modernization. For provider management systems, this might include separate services for enrollment processing, credential verification, provider directory, and reporting functions that communicate through well-defined interfaces.

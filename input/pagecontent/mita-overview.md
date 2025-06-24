@@ -1,6 +1,6 @@
 # Medicaid Information Technology Architecture (MITA) Overview
 
-<i><b>NOTE: This information is based on MITA 3.0, which can be leveraged and updated for MITA 4.0</b></i>
+<i><b>NOTE: This information is based on MITA, which can be leveraged and updated for MITA 4.0</b></i>
 
 ## MITA Framework
 
