@@ -1,6 +1,6 @@
 ### Introduction
 
-The Medicaid Provider Credentialing and Enrollment Implementation Guide (IG) provides a standardized approach for managing provider credentialing and enrollment processes within Medicaid programs. This IG is designed to align with the Medicaid Information Technology Architecture (MITA) 3.0 framework and leverages FHIR US Core 6.1.0, Da Vinci PDex Plan-Net, and FAST National Directory specifications to create a comprehensive, interoperable solution for state Medicaid agencies and their partners.
+The Medicaid Provider Credentialing and Enrollment Implementation Guide (IG) provides a standardized approach for managing provider credentialing and enrollment processes within Medicaid programs. This IG is designed to align with the Medicaid Information Technology Architecture (MITA) framework and leverages FHIR US Core 6.1.0, Da Vinci PDex Plan-Net, and FAST National Directory specifications to create a comprehensive, interoperable solution for state Medicaid agencies and their partners.
 
 ### Scope and Purpose
 
