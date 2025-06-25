@@ -1,10 +1,8 @@
-# Medicaid Provider Credentialing and Enrollment Implementation Guide
-
-## Introduction
+### Introduction
 
 The Medicaid Provider Credentialing and Enrollment Implementation Guide (IG) provides a standardized approach for managing provider credentialing and enrollment processes within Medicaid programs. This IG is designed to align with the Medicaid Information Technology Architecture (MITA) 3.0 framework and leverages FHIR US Core 6.1.0, Da Vinci PDex Plan-Net, and FAST National Directory specifications to create a comprehensive, interoperable solution for state Medicaid agencies and their partners.
 
-## Scope and Purpose
+### Scope and Purpose
 
 This Implementation Guide addresses the following key areas:
 
@@ -18,9 +16,9 @@ This Implementation Guide addresses the following key areas:
 
 - **Quality Assurance**: Data quality frameworks and validation processes that ensure accurate, complete provider information throughout the credentialing and enrollment lifecycle. The IG includes validation rules, data quality metrics, and best practices for data governance that help states maintain high-quality provider data for program integrity, provider directories, and reporting purposes.
 
-## Key Features
+### Key Features
 
-### MITA Alignment
+#### MITA Alignment
 This IG is designed to support MITA objectives including:
 
 - **Business Architecture**: Standardized business processes for provider management that align with MITA Business Process Model (BPM) for Provider Management, including Provider Enrollment, Provider Information Management, Provider Support Services, and Provider Grievance and Appeal. The IG supports states in implementing these processes with configurable workflows that can be adapted to state-specific requirements while maintaining alignment with MITA standards.
@@ -31,7 +29,7 @@ This IG is designed to support MITA objectives including:
 
 - **Performance Management**: Metrics and monitoring capabilities that support MITA's goals for continuous improvement and outcome-based assessment. The IG includes recommendations for key performance indicators (KPIs), audit mechanisms, and reporting frameworks that help states measure the effectiveness of their provider management processes and identify opportunities for enhancement.
 
-### FHIR Standards Compliance
+#### FHIR Standards Compliance
 The IG leverages established FHIR standards:
 
 - **US Core 6.1.0**: Base profiles for US healthcare data exchange, providing a foundation of standardized resources that ensure compatibility with other US healthcare systems. The IG extends US Core profiles where needed to address Medicaid-specific requirements while maintaining compatibility with the broader US healthcare ecosystem.
@@ -40,7 +38,7 @@ The IG leverages established FHIR standards:
 
 - **FAST National Directory**: National provider directory services integration that enables states to participate in broader provider data exchange initiatives. The IG includes guidance on how states can contribute to and leverage national provider directories, reducing the burden of maintaining separate provider databases and improving cross-state coordination.
 
-### State Customization Support
+#### State Customization Support
 
 - **Flexible Framework**: A flexible framework allowing state-specific customizations that accommodate variations in state laws, regulations, and business processes. The IG provides extension points and implementation patterns that enable states to address their unique requirements while maintaining interoperability with other systems and alignment with national standards.
 
@@ -50,7 +48,7 @@ The IG leverages established FHIR standards:
 
 - **Implementation Guidance for Different System Types**: Detailed transition strategies for different types of existing systems, including legacy MMIS Provider Subsystems, Modern Web-Based Provider Systems, Cloud-Native Provider Management Systems, Commercial Off-The-Shelf (COTS) Provider Systems, and State-Specific Custom Systems. Each strategy includes technical implementation steps, data migration approaches, integration considerations, and timelines.
 
-## Target Audience
+### Target Audience
 
 This IG is intended for:
 
@@ -64,7 +62,7 @@ This IG is intended for:
 
 - **Standards Organizations**: FHIR implementers and healthcare IT professionals working on related standards and implementation guides. The IG aligns with and extends existing standards, providing a specialized framework for Medicaid provider management that complements broader healthcare interoperability initiatives.
 
-## Implementation Approach
+### Implementation Approach
 
 The IG provides comprehensive resources for implementation:
 
@@ -84,7 +82,7 @@ The IG provides comprehensive resources for implementation:
    - **Implementation Community**: A framework for sharing implementation experiences and best practices through a community governance structure, knowledge sharing mechanisms, community engagement activities, and collaboration tools.
    - **Future Roadmap**: A detailed roadmap for future versions of the IG based on implementer feedback, with planned enhancements for versions 1.1.0, 2.0.0, and 3.0.0, along with a long-term vision beyond 2027.
 
-## Getting Started
+### Getting Started
 
 To begin implementing this IG, we recommend the following steps:
 
